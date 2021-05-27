@@ -21,7 +21,6 @@ import './ProductsGrid.css';
 
 
 const ProductsGrid = ({ productsFiltered }) => {
-console.log("product grid")
 
   // get Material UI media query breakpoint to change width cards
   const mobile = useMediaQuery(theme => theme.breakpoints.down("xs"));

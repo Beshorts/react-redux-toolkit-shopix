@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
-  console.count('drawer');
 
   const classes = useStyles();
 
@@ -70,7 +69,6 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
 
   // return the right category selected on reload page based on url
   useEffect(() => {
-    console.count('pathname')
     let path = location.pathname;
     if (path === "/products/lipstick" && selectedIndex !== 0) setSelectedIndex(0);
     else if (path === "/products/blush" && selectedIndex !== 1) setSelectedIndex(1);
@@ -84,7 +82,6 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
     anchor.scrollTo(0,0);
     setSelectedIndex(index);
   };
-
 
   const list = (anchor) => (
     <div

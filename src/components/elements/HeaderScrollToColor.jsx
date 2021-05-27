@@ -8,7 +8,7 @@ import { useScrollTrigger } from "@material-ui/core";
    as bg, shadow, change color of MenuIcon and brand title */
 
 const ScrollHandler = props => {
-  console.log(props)
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 10,

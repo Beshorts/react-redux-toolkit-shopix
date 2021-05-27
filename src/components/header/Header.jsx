@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = ({ children, openDrawerCallback }) => {
-    console.count('header')
 
   const classes = useStyles();
 

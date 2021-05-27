@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CartGrid = () => {
-  console.count('cart grid')
+
  const classes = useStyles();
 
  // total amount of products added to cart
