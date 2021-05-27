@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CartCardButton = ({ product }) => {
-  console.count('cart Button')
 
   const classes = useStyles();
 

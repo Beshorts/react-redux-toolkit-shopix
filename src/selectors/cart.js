@@ -13,7 +13,7 @@ export const productsCartSelector = createSelector(
  cartSelector,
    (entities, cartItems) => entities.filter(elem => {
      return cartItems.find(item => item.id === elem.id)
-   }
+    }
   )
 );
 
@@ -29,5 +29,5 @@ export const totalCartPriceSelector = createSelector(
   cartSelector,
   (state) => state.reduce((acc, curr) =>
     acc + Number(curr.price),0)
-)
+);
 

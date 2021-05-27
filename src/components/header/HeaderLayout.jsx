@@ -9,7 +9,6 @@ import { useDrawer } from '../elements/customHooks';
 
 // create component composition
 const HeaderLayout = () => {
-  console.count("header layout")
 
   // custom hook to handle Drawer behaviours
   const [mobileOpen, openDrawerCallback, closeDrawerCallback] = useDrawer();

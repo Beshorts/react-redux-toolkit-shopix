@@ -76,7 +76,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const ProductDetails = () => {
-  console.log("single product page")
 
   const classes = useStyles();
 

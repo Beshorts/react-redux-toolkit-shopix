@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const ProductsPage = () => {
- console.count("products Page")
 
   const classes = useStyles();
 
@@ -62,7 +61,6 @@ const ProductsPage = () => {
   useEffect(() => {
     if (isProductsLoaded) {
       dispatch(getFilterBy(category));
-      console.log("dispatch products by category")
      };
   },[isProductsLoaded, dispatch,category]);
 
@@ -70,7 +68,6 @@ const ProductsPage = () => {
   useEffect(() => {
      if (filteredByCategory.length !== 0) {
       dispatch(getProducts(filteredByCategory))
-      console.log("dispatch products filteredByCategory")
     };
   },[dispatch, filteredByCategory]);
 

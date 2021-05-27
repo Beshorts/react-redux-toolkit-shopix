@@ -60,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
   },
   brandProduct: {
    fontWeight: 700,
-   //fontSize: "1rem",
   },
   nameProduct: {
    fontSize: "1rem",
@@ -83,7 +82,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CartCard = ({ product }) => {
-  console.log('cart card')
 
   const classes = useStyles();
 

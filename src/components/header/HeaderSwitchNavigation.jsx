@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HeaderSwitchNavigation = ({ openDrawerCallback }) => {
-  console.log("switch component")
 
   const classes = useStyles();
 
