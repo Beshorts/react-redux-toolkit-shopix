@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+
 // using redux-persist for persisting state across refresh pages
 import {
   persistStore,
@@ -13,16 +14,15 @@ import {
 import rootReducer from "./root-reducer"
 
 export const store = configureStore({
-   // persistedState,
-    reducer: rootReducer,
-    // avoid non-serializability check for redux-persist
-    middleware: getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-      },
-    })
-  });
+  // persistedState,
+  reducer: rootReducer,
+  // avoid non-serializability check for redux-persist
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+    },
+  })
+});
 
-
-  export const persistor = persistStore(store);
+export const persistor = persistStore(store);
 
