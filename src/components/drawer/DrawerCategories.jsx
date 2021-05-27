@@ -79,8 +79,12 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
 
   const handleListItemClick = (event, index) => {
     const anchor = document.querySelector(".grid");
-    anchor.scrollTo(0,0);
-    setSelectedIndex(index);
+    if ( anchor) {
+     anchor.scrollTo(0,0);
+     setSelectedIndex(index);
+    } else {
+     setSelectedIndex(index);
+    }
   };
 
   const list = (anchor) => (
