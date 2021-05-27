@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './index.css';
-
 import App from './App';
 
 // redux store and persist
@@ -13,19 +11,60 @@ import {store, persistor} from './app/store';
 // redux action
 import {fetchProducts} from './features/productsAPI/productsAPISlice';
 
+// MUI setup for custom theme
+import { ThemeProvider, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+
+import './index.css';
+
 import reportWebVitals from './reportWebVitals';
+
+// custom theme for styling components
+let theme = createMuiTheme({
+   palette: {
+    background: {
+      default: "#F5F5F5",
+    },
+    // cartIcon + BackIcon
+    primary: {
+      main: "#4056F4",
+      contrastText: '#fff',
+    },
+    // cartBadge
+    secondary: {
+       main: "#F65BE3",
+       contrastText: '#fff',
+    },
+    // btn FavoriteIcon onClick
+    error: {
+      main: "#ff5e78",
+    },
+     // all texts
+    texts: {
+       main: "#114B5F",
+    },
+    // color pricing
+    pricingColor: {
+       main: "#bc4d08",
+    },
+  },
+});
+
+// keep typography responsive cross devices
+theme = responsiveFontSizes(theme);
 
 // dispatch thunk when App first mounts
 store.dispatch(fetchProducts());
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+     <ThemeProvider theme={theme}>
+      <CssBaseline />
+        <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+          </PersistGate>
+        </Provider>
+    </ThemeProvider>,
   document.getElementById('root')
 );
 
