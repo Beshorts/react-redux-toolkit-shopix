@@ -57,7 +57,6 @@ theme = responsiveFontSizes(theme);
 store.dispatch(fetchProducts());
 
 ReactDOM.render(
-  <React.StrictMode>
      <ThemeProvider theme={theme}>
       <CssBaseline />
         <Provider store={store}>
@@ -65,8 +64,7 @@ ReactDOM.render(
           <App />
           </PersistGate>
         </Provider>
-    </ThemeProvider>
-    </React.StrictMode>,
+    </ThemeProvider>,
   document.getElementById('root')
 );
 
