@@ -16,7 +16,7 @@ const persistConfig = {
      keep the cache intact on refresh page and purge it on closing browser */
   storage: storageSession,
   // clear redux persist state on close app => use it on development
-  blacklist: ['products', 'cart', 'favorite', 'filters']
+  //blacklist: ['products', 'cart', 'favorite', 'filters']
 }
 
 const rootReducer = combineReducers({

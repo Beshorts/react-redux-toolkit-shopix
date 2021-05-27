@@ -41,8 +41,9 @@ export const fetchProducts = createAsyncThunk(
           brand: elem.brand,
           name: elem.name,
           // fast resize images for better performance
-          //const gigi = elem.image_link.includes("?sw=390&sh=390&sm=fit")
-          image_link: (elem.image_link.includes("?sw=390&sh=390&sm=fit") ? elem.image_link.replace("?sw=390&sh=390&sm=fit", "?sw=150&sh=150&sm=fit") : elem.image_link.concat("?sw=150&sh=150&sm=fit")),
+          image_link: (elem.image_link.includes("?sw=390&sh=390&sm=fit")
+            ? elem.image_link.replace("?sw=390&sh=390&sm=fit", "?sw=150&sh=150&sm=fit")
+            : elem.image_link.concat("?sw=150&sh=150&sm=fit")),
           price_sign: elem.price_sign !== null ? elem.price_sign : "$",
           // normalize all prices number
           price: elem.price.replace(/\.0+$/, ".00"),
@@ -51,7 +52,6 @@ export const fetchProducts = createAsyncThunk(
           description: elem.description,
         })
       )
-      console.log(productFields);
       return productFields
     } catch (error) {
       throw (error.message)
