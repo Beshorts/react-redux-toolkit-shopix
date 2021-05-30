@@ -43,7 +43,7 @@ const LazyCardMedia = elem => {
   );
 };
 
-  export default LazyCardMedia;
+export default LazyCardMedia;
 
 LazyCardMedia.propTypes = {
   elem: PropTypes.shape({

@@ -1,8 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux'
+
+import PropTypes from 'prop-types';
 
 // redux  actions
 import { getProducts } from '../../features/productsAPI/productsAPISlice';
@@ -12,14 +14,16 @@ import { getFilterBy } from '../../features/filters/filtersSlice';
 import { productsSelected } from '../../selectors/filters';
 
 import { makeStyles } from '@material-ui/core/styles';
+
 // Mui components
 import Container from '@material-ui/core/Container';
 
-// import components
-import ProductsGrid from './ProductsGrid';
-
 // import elements
+import Error from '../elements/errors/Error';
 import SkeletonCardGrid from '../elements/SkeletonCardGrid';
+
+// import lazy component
+const ProductsGrid = lazy(() => import('./ProductsGrid'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
@@ -49,7 +53,7 @@ const ProductsPage = () => {
   // fectProducts action status
   const isProductsLoaded = useSelector(state => state.products.status === "succeeded");
 
-  // API error response
+    // API error response
   const error = useSelector(state => state.products.error);
 
   // memoize selector to get products filtered by param
@@ -74,17 +78,27 @@ const ProductsPage = () => {
   return(
     <React.Fragment>
       <Container className={classes.root} >
-        { isProductsLoaded ?
-          <ProductsGrid productsFiltered={productsFiltered} />
-          : error
-          ? error // errors page needs to be implemented
-          : <SkeletonCardGrid />
-        }
+          { isProductsLoaded
+            ? <Suspense fallback={<SkeletonCardGrid/>} >
+                <ProductsGrid productsFiltered={productsFiltered} />
+              </Suspense>
+            : error
+            ? <Error />
+            : <SkeletonCardGrid/>
+          }
       </Container>
     </React.Fragment>
   )
 };
 
 export default ProductsPage;
+
+ProductsPage.propTypes = {
+  isProductsLoaded: PropTypes.string.isRequired,
+}
+
+ProductsPage.defaultProps = {
+  isProductsLoaded: 'succeeded',
+}
 
 

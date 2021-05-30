@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
-import {Link , useLocation} from "react-router-dom";
+import { Link , useLocation } from "react-router-dom";
 
 import PropTypes from 'prop-types';
 
@@ -21,6 +21,7 @@ import Hidden from '@material-ui/core/Hidden';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
 
 // import elements
 import {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.texts.main,
     fontWeight: 500,
-    width: 188,
+    width: 234,
   },
   fullList: {
     width: 'auto',
@@ -51,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
       flexShrink: 0,
     }
   },
+  homeIcon: {
+    color: theme.palette.texts.main,
+  }
 }));
 
 const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
@@ -70,10 +74,11 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
   // return the right category selected on reload page based on url
   useEffect(() => {
     let path = location.pathname;
-    if (path === "/products/lipstick" && selectedIndex !== 0) setSelectedIndex(0);
-    else if (path === "/products/blush" && selectedIndex !== 1) setSelectedIndex(1);
-    else if (path === "/products/eyeliner" && selectedIndex !== 2) setSelectedIndex(2);
-    else if (path === "/products/mascara" && selectedIndex !== 3) setSelectedIndex(3);
+    if (path === "/" && selectedIndex !== 0) setSelectedIndex(0);
+    else if (path === "/products/lipstick" && selectedIndex !== 1) setSelectedIndex(1);
+    else if (path === "/products/blush" && selectedIndex !== 2) setSelectedIndex(2);
+    else if (path === "/products/eyeliner" && selectedIndex !== 3) setSelectedIndex(3);
+    else if (path === "/products/mascara" && selectedIndex !== 4) setSelectedIndex(4);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // not need depencies because it needed to run only once on reload page
 
@@ -107,11 +112,22 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
           categories
         </Typography>
         <Divider />
-        <ListItem
+           <ListItem
           button
           selected={selectedIndex === 0}
-          component={Link} to='/products/lipstick'
+          component={Link} to='/'
           onClick={(event) => handleListItemClick(event, 0)}
+        >
+          <ListItemIcon >
+            <HomeIcon className={classes.homeIcon} />
+          </ListItemIcon>
+          <ListItemText className={classes.listItemText} primary="home"  />
+        </ListItem>
+        <ListItem
+          button
+          selected={selectedIndex === 1}
+          component={Link} to='/products/lipstick'
+          onClick={(event) => handleListItemClick(event, 1)}
         >
           <ListItemIcon >
             <Lipstick/>
@@ -121,9 +137,9 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
         <ListItem
           className={classes.listItem}
           button
-          selected={selectedIndex === 1}
+          selected={selectedIndex === 2}
           component={Link} to='/products/blush'
-          onClick={(event) => handleListItemClick(event, 1)}
+          onClick={(event) => handleListItemClick(event, 2)}
         >
           <ListItemIcon>
             <Blush/>
@@ -133,9 +149,9 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
         <ListItem
           className={classes.listItem}
           button
-          selected={selectedIndex === 2}
+          selected={selectedIndex === 3}
           component={Link} to='/products/eyeliner'
-          onClick={(event) => handleListItemClick(event, 2)}
+          onClick={(event) => handleListItemClick(event, 3)}
         >
           <ListItemIcon>
             <Eyeliner/>
@@ -145,9 +161,9 @@ const  DrawerCategories = ({mobileOpen, closeDrawerCallback}) => {
         <ListItem
           className={classes.listItem}
           button
-          selected={selectedIndex === 3}
+          selected={selectedIndex === 4}
           component={Link} to='/products/mascara'
-          onClick={(event) => handleListItemClick(event,3)}
+          onClick={(event) => handleListItemClick(event,4)}
         >
           <ListItemIcon>
             <Mascara/>

@@ -55,29 +55,29 @@ const CartCardButton = ({ product }) => {
 
   return(
     <React.Fragment>
-        {getCurrentCartItem.id === id && (
-      <Box className={classes.boxPriceAndBtn} key={id}>
-        <Typography className={classes.productPrice} variant="h6" component="h6" >
-          {price_sign}{getCurrentCartItem.price}
-        </Typography>
-        <CardActions  >
-          <ButtonGroup aria-label="small outlined button group" >
-            <Button
-              onClick={handleAddSingleQuantity}
-            >
-            +
-            </Button>
-            <Button >
-              {getCurrentCartItem.quantity}
-            </Button>
-            <Button
-              onClick={handleRemoveSingleQuantity}
-            >
-            -
-            </Button>
-          </ButtonGroup>
-        </CardActions>
-      </Box>
+      {getCurrentCartItem.id === id && (
+        <Box className={classes.boxPriceAndBtn} key={id}>
+          <Typography className={classes.productPrice} variant="h6" component="h6" >
+            {price_sign}{getCurrentCartItem.price}
+          </Typography>
+          <CardActions  >
+            <ButtonGroup aria-label="small outlined button group" >
+              <Button
+                onClick={handleAddSingleQuantity}
+              >
+              +
+              </Button>
+              <Button >
+                {getCurrentCartItem.quantity}
+              </Button>
+              <Button
+                onClick={handleRemoveSingleQuantity}
+              >
+              -
+              </Button>
+            </ButtonGroup>
+          </CardActions>
+        </Box>
       )}
     </React.Fragment>
   )
