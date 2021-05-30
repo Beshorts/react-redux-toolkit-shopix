@@ -91,49 +91,49 @@ const CartCard = ({ product }) => {
   return(
     <React.Fragment>
       <Slide direction="up" in={true} timeout={500} mountOnEnter unmountOnExit >
-            <Box>
-              <Fade in={true} timeout={800}>
-                <Card className={classes.rootCard}>
-                  <Box className={classes.boxRoot} >
-                    <LazyCardMedia
-                      className={classes.media}
-                      image={image_link}
-                      alt="Make Up product"
-                      height={100}
-                    />
-                    <CardContent className={classes.content}>
-                      <Typography className={classes.brandProduct} variant="h6" component="h4" >
-                        {brand}
-                      </Typography>
-                      <Typography className={classes.nameProduct} noWrap variant="h6" component="h5">
-                        {name}
-                      </Typography>
-                      <Typography className={classes.productInfoType} gutterBottom noWrap variant="subtitle2" component="h6" >
-                        {product_type}
-                      </Typography>
-                      <CardActions className={classes.btnDetails} >
-                        <Button
-                          classes={{
-                             root: classes.btnDetails,
-                             label: classes.btnDetailslabel
-                          }}
-                          color="primary"
-                          component={Link} to={`/product/${id}`}
-                          key={id}
-                        >
-                          see details
-                        </Button>
-                      </CardActions>
-                    </CardContent>
-                    </Box>
-                  <CardCartButton product={product} />
-                </Card>
-              </Fade>
-            </Box>
-          </Slide>
+        <Box>
+          <Fade in={true} timeout={800}>
+            <Card className={classes.rootCard}>
+              <Box className={classes.boxRoot} >
+                <LazyCardMedia
+                  className={classes.media}
+                  image={image_link}
+                  alt="Make Up product"
+                  height={100}
+                />
+                <CardContent className={classes.content}>
+                  <Typography className={classes.brandProduct} variant="h6" component="h4" >
+                    {brand}
+                  </Typography>
+                  <Typography className={classes.nameProduct} noWrap variant="h6" component="h5">
+                    {name}
+                  </Typography>
+                  <Typography className={classes.productInfoType} gutterBottom noWrap variant="subtitle2" component="h6" >
+                    {product_type}
+                  </Typography>
+                  <CardActions className={classes.btnDetails} >
+                    <Button
+                      classes={{
+                         root: classes.btnDetails,
+                         label: classes.btnDetailslabel
+                      }}
+                      color="primary"
+                      component={Link} to={`/product/${id}`}
+                      key={id}
+                    >
+                      see details
+                    </Button>
+                  </CardActions>
+                </CardContent>
+                </Box>
+              <CardCartButton product={product} />
+            </Card>
+          </Fade>
+        </Box>
+      </Slide>
     </React.Fragment>
-    )
-}
+  )
+};
 
 export default React.memo(CartCard);
 

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 
 import { useSelector } from 'react-redux';
 
+import PropTypes from 'prop-types';
+
 // redux actions
 import {selectProductById} from '../../features/productsAPI/productsAPISlice';
 
@@ -26,11 +28,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.texts.main,
      [theme.breakpoints.up('lg')]: {
      maxWidth: 1000,
-     marginLeft: 318,
-    },
-    [theme.breakpoints.up('xl')]: {
-     maxWidth: 1280,
-     marginLeft: 420,
+     marginLeft: 'calc(40% - 250px)',
     },
   },
   imageBg: {
@@ -139,3 +137,15 @@ const ProductDetails = () => {
 }
 
 export default ProductDetails;
+
+ProductDetails.propTypes = {
+  singleProduct: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    brand: PropTypes.string.isRequired,
+    image_link: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    product_type: PropTypes.string.isRequired,
+    price_sign: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+  })
+}

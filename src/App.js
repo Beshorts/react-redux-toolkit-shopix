@@ -1,39 +1,50 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect,
 } from "react-router-dom";
 
 // import components
+/* as Header and its children (DrawerCategories) are available on every pages
+- no need to lazy load*/
 import HeaderLayout from './components/header/HeaderLayout';
-import ProductsPage from './components/products/ProductsPage';
-import ProductDetails from './components/products/ProductDetails';
-import CartGrid from './components/cart/CartGrid';
+import HomePage from './components/homePage/HomePage';
+// import elements
+import Spinner from './components/elements/spinner/Spinner';
+import NotFoundPage from './components/elements/NotFoundPage';
 
+// import lazy components
+const ProductsPage = lazy(() => import('./components/products/ProductsPage'));
+const ProductDetails = lazy(() => import('./components/products/ProductDetails'));
+const CartGrid = lazy(() => import('./components/cart/CartGrid'));
 
 const App = () => {
+
   return (
     <div className="App">
       <Router>
-        <HeaderLayout  />
-        <Switch>
-          <Route exact path="/"  >
-            {/* for this project user is directly redireted on category products*/}
-            <Redirect from="/" to="/products/lipstick" />
-          </Route>
-          <Route  path='/products/:category'>
-            <ProductsPage />
-          </Route>
-          <Route path="/product/:productId">
-            <ProductDetails />
-          </Route>
-          <Route path="/my_cart" >
-            <CartGrid />
-          </Route>
-        </Switch>
+        <HeaderLayout />
+        <Suspense fallback={<Spinner/>}>
+          <Switch>
+            <Route exact path="/" >
+              <HomePage />
+            </Route>
+            <Route  path='/products/:category'>
+              <ProductsPage />
+            </Route>
+            <Route path="/product/:productId">
+              <ProductDetails />
+            </Route>
+            <Route path="/my_cart" >
+              <CartGrid />
+            </Route>
+            <Route path='*'>
+              <NotFoundPage/>
+            </Route>
+          </Switch>
+        </Suspense>
       </Router>
     </div>
   )

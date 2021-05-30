@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     color: "inherit",
     },
     fabIcon: {
-     marginRight: "3px",
+     marginRight: 3,
     },
 }));
 
