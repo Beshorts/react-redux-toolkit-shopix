@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 
 import { Link } from "react-router-dom";
 
@@ -7,20 +7,22 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Mui components
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import Zoom from '@material-ui/core/Zoom';
 
-
 // import elements
-import CartButton from '../elements/CartButton';
-import FavoriteButton from '../elements/FavoriteButton';
-import LazyCardMedia from '../elements/LazyCardMedia';
 import { useHandlerButton } from '../elements/customHooks';
+
+// import MUI components as lazy load
+const Card = lazy(() => import('@material-ui/core/Card'));
+const CardHeader = lazy(() => import('@material-ui/core/CardHeader'));
+const CardActionArea = lazy(() => import('@material-ui/core/CardActionArea'));
+const CardActions = lazy(() => import('@material-ui/core/CardActions'));
+const CardContent = lazy(() => import('@material-ui/core/CardContent'));
+const Typography = lazy(() => import('@material-ui/core/Typography'));
+// import elements as lazy load
+const CartButton = lazy(() => import('../elements/CartButton'));
+const FavoriteButton = lazy(() => import('../elements/FavoriteButton'));
+const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 
 
 // rules for custom components style
@@ -112,45 +114,47 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
       }}
       >
       <Zoom in={true}>
-        <Card elevation={3} className={classes.root} key={card.id} >
-          <CardHeader
-            className={classes.cardHeader}
-            classes={{title: classes.cardHeaderTitle}}
-            action={
-              <FavoriteButton
-                className={classes.favoriteIcon}
-                isFavorited={favoriteItem}
-                onClick={handleFavoriteButton}
+        <Suspense fallback={<p>loading...</p>}>
+          <Card elevation={3} className={classes.root} key={card.id} >
+            <CardHeader
+              className={classes.cardHeader}
+              classes={{title: classes.cardHeaderTitle}}
+              action={
+                <FavoriteButton
+                  className={classes.favoriteIcon}
+                  isFavorited={favoriteItem}
+                  onClick={handleFavoriteButton}
+                />
+              }
+              title={card.brand}
+            />
+            <CardActionArea
+              className={classes.cardActionArea}
+              component={Link} to={`/product/${card.id}`}
+            >
+              <LazyCardMedia
+                className={classes.media}
+                alt="beautiful make-up product"
+                image={card.image_link}
+                height={120}
               />
-            }
-            title={card.brand}
-          />
-          <CardActionArea
-            className={classes.cardActionArea}
-            component={Link} to={`/product/${card.id}`}
-          >
-            <LazyCardMedia
-              className={classes.media}
-              alt="beautiful make-up product"
-              image={card.image_link}
-              height={120}
-            />
-            <CardContent className={classes.nameProductContainer} >
-              <Typography className={classes.nameProduct} noWrap variant="h6" component="h1" >
-                {card.name}
+              <CardContent className={classes.nameProductContainer} >
+                <Typography className={classes.nameProduct} noWrap variant="h6" component="h1" >
+                  {card.name}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions className={classes.cardAction}  >
+              <Typography className={classes.priceProduct}  variant="h6" component="h2">
+                 {card.price_sign}{card.price}
               </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions className={classes.cardAction}  >
-            <Typography className={classes.priceProduct}  variant="h6" component="h2">
-               {card.price_sign}{card.price}
-            </Typography>
-            <CartButton
-               added={cartItem}
-               onClick={handleCartButton}
-            />
-          </CardActions>
-        </Card>
+              <CartButton
+                 added={cartItem}
+                 onClick={handleCartButton}
+              />
+            </CardActions>
+          </Card>
+        </Suspense>
       </Zoom>
      </div>
      )

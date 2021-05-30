@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -8,21 +8,19 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 
 import { useMediaQuery } from "@material-ui/core";
 
-// Mui components
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-
-// import component
-import ProductCard from './ProductCard';
-
 // style
 import './ProductsGrid.css';
 
+// import element
+import SkeletonCardGrid from '../elements/SkeletonCardGrid';
+
+// import lazy component
+const ProductCard = lazy(() => import('./ProductCard'));
+const ScrollGridBtn = lazy(() => import('./ScrollGridBtn'));
 
 const ProductsGrid = ({ productsFiltered }) => {
 
-  // get Material UI media query breakpoint to change width cards
+  // get custom media query breakpoint to change width cards
   const mobile = useMediaQuery(theme => theme.breakpoints.down("xs"));
 
   return(
@@ -76,56 +74,27 @@ const ProductsGrid = ({ productsFiltered }) => {
         };
 
          return(
-          <React.Fragment>
-            <Zoom in={true}>
-              <Fab
-                color="primary"
-                size="medium"
-                aria-label="scroll back to top"
-                style={{
-                  position: "fixed",
-                  bottom: "75px",
-                  right: "28px",
-                  zIndex: 1100 + 1,
-                }}
-                onClick={scrollToTop}>
-                  <strong>top</strong>
-              </Fab>
-            </Zoom>
-            <Zoom in={true}>
-              <Fab
-                color="primary"
-                size="medium"
-                aria-label="scroll up"
-                style={{
-                  position: "fixed",
-                  bottom: "20px",
-                  right: "28px",
-                  zIndex: 1100 + 1,
-                }}
-                onClick={scrollUp}>
-                  <KeyboardArrowUpIcon />
-              </Fab>
-            </Zoom>
-            <Grid
-              className="grid"
-              style={{
-                position: "fixed",
-                paddingBottom: "100px"
-              }}
-              width={width}
-              ref={listRef}
-              height={height}
-              columnCount={columnCount}
-              columnWidth={cellWidth}
-              rowCount={rowCount}
-              rowHeight={cellHeight}
-              itemData={{productsFiltered, columnCount}}
-            >
-              {ProductCard}
-            </Grid>
-          </React.Fragment>
-         )
+            <Suspense fallback={<SkeletonCardGrid />} >
+              <ScrollGridBtn scrollToTop={scrollToTop} scrollUp={scrollUp}/>
+                <Grid
+                  className="grid"
+                  style={{
+                    position: "fixed",
+                    paddingBottom: "100px"
+                  }}
+                  width={width}
+                  ref={listRef}
+                  height={height}
+                  columnCount={columnCount}
+                  columnWidth={cellWidth}
+                  rowCount={rowCount}
+                  rowHeight={cellHeight}
+                  itemData={{productsFiltered, columnCount}}
+                >
+                  {ProductCard}
+                </Grid>
+            </Suspense>
+          )
        }}
       </AutoSizer>
     </div>

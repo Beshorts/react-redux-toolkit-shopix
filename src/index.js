@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
 
 // redux store and persist
 import { Provider } from "react-redux";
@@ -15,9 +14,13 @@ import {fetchProducts} from './features/productsAPI/productsAPISlice';
 import { ThemeProvider, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import Spinner from './components/elements/spinner/Spinner';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
+
+// import lazy component
+const App = lazy(() => import('./App'));
 
 // custom theme for styling components
 let theme = createMuiTheme({
@@ -48,6 +51,15 @@ let theme = createMuiTheme({
        main: "#bc4d08",
     },
   },
+   breakpoints: {
+    values: {
+      xs: 423,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
 
 // keep typography responsive cross devices
@@ -61,7 +73,9 @@ ReactDOM.render(
       <CssBaseline />
         <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+        <Suspense fallback={<Spinner />}>
           <App />
+          </Suspense>
           </PersistGate>
         </Provider>
     </ThemeProvider>,

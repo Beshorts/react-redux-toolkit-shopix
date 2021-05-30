@@ -16,8 +16,7 @@ const initialState = productsAdapter.getInitialState({
   productsFiltered: [],
 });
 
-/* for this project I choose to fetch NYX BRAND and retrieve only specific fields
-   with a max of 200 priced products */
+/* for this project I choose to fetch NYX BRAND and retrieve only specific fields */
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
@@ -61,7 +60,6 @@ export const fetchProducts = createAsyncThunk(
 
 /* createSlice makes all action creators and reducers in the same file
    so no separation of logic is necessary */
-
 const productsAPISlice = createSlice({
   name: 'products',
   initialState,

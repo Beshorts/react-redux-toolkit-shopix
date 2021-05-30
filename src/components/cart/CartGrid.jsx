@@ -31,16 +31,13 @@ import ScrollToTopOnPage from '../elements/ScrollToTopOnPage';
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
-    rootContainer: {
+  rootContainer: {
     marginBottom: 60,
     display: "flex",
     flexDirection: "column",
-
-    [theme.breakpoints.up('md')]: {
-      maxWidth: "80%",
-    },
     [theme.breakpoints.up('lg')]: {
-      maxWidth: "56%",
+     maxWidth: 1000,
+     marginLeft: 'calc(40% - 250px)',
     },
   },
   cardCartSummary: {
@@ -52,13 +49,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     padding: "16px 20px",
     [theme.breakpoints.down('xs')]: {
-      flexDirection: "column",
-      padding: 16,
+     flexDirection: "column",
+     padding: 16,
     },
   },
   headerCart: {
-    marginBottom: 0,
-    fontWeight: 500,
+   marginBottom: 0,
+   fontWeight: 500,
   },
 
 }));
@@ -75,7 +72,6 @@ const CartGrid = () => {
 
   // cart price total amount
   const totalPurchase = useSelector(totalCartPriceSelector);
-
 
   return(
     <Container className={classes.rootContainer}  >
