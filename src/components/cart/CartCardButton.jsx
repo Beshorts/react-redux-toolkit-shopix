@@ -18,20 +18,26 @@ import { useHandlerButton } from '../elements/customHooks';
 const useStyles = makeStyles((theme) => ({
     boxPriceAndBtn: {
     display: "flex",
-    flexDirection: "column",
-    padding: 16,
-    justifyContent: "space-between",
-    alignItems: "flex-start",
-    [theme.breakpoints.down('xs')]: {
+      padding: 16,
+    [theme.breakpoints.up('xs')]: {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
       paddingTop: 0,
     },
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: "column",
+      justifyContent: "space-between",
+      alignItems: "flex-start",
+      padding: 16,
+    },
   },
   productPrice: {
     color: theme.palette.pricingColor.main,
     fontSize: "1.2rem",
+  },
+  btnActions: {
+    padding: "8px 4px 8px 0px",
   },
 }));
 
@@ -60,7 +66,7 @@ const CartCardButton = ({ product }) => {
           <Typography className={classes.productPrice} variant="h6" component="h6" >
             {price_sign}{getCurrentCartItem.price}
           </Typography>
-          <CardActions  >
+          <CardActions className={classes.btnActions}  >
             <ButtonGroup aria-label="small outlined button group" >
               <Button
                 onClick={handleAddSingleQuantity}

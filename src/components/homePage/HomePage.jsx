@@ -44,7 +44,8 @@ const HomePage = () => {
           Make Up e-commerce
         </Typography>
          <Typography gutterBottom subtitle1="h6" component="h3" >
-          Responsive Web app using React, Redux Toolkit and Material UI
+          Navigate over products categories, see product info, add / remove it from shopping cart or favorites,
+          increase / decrease its quantity.
         </Typography>
       </Box>
     </Container>

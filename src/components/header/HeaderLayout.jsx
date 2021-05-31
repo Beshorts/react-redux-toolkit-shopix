@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 
 // import components
 import Header from './Header';
-import DrawerCategories from '../drawer/DrawerCategories';
+//import DrawerCategories from '../drawer/DrawerCategories';
 
 // import elements
 import { useDrawer } from '../elements/customHooks';
+const DrawerCategories = lazy(() => import('../drawer/DrawerCategories'));
 
 // create component composition
 const HeaderLayout = () => {
@@ -15,7 +16,9 @@ const HeaderLayout = () => {
 
   return(
     <Header openDrawerCallback={openDrawerCallback}>
-      <DrawerCategories mobileOpen={mobileOpen} closeDrawerCallback={closeDrawerCallback} />
+      <Suspense fallback={<div/>}>
+        <DrawerCategories mobileOpen={mobileOpen} closeDrawerCallback={closeDrawerCallback} />
+      </Suspense>
     </Header>
   );
 };
