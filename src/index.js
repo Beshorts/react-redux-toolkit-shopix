@@ -51,15 +51,6 @@ let theme = createMuiTheme({
        main: "#bc4d08",
     },
   },
-   breakpoints: {
-    values: {
-      xs: 423,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
-  },
 });
 
 // keep typography responsive cross devices

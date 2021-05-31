@@ -45,12 +45,14 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     color: theme.palette.texts.main,
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    padding: "16px 20px",
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.up('xs')]: {
      flexDirection: "column",
      padding: 16,
+    },
+    [theme.breakpoints.up('sm')]: {
+     flexDirection: "row",
+     justifyContent: "space-between",
+     padding: "16px 20px",
     },
   },
   headerCart: {

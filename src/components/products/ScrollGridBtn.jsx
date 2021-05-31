@@ -16,11 +16,11 @@ const ScrollGridBtn = ({scrollToTop, scrollUp}) => {
       <Zoom in={true}>
         <Fab
           color="primary"
-          size="medium"
+          size="small"
           aria-label="scroll back to top"
           style={{
             position: "fixed",
-            bottom: "75px",
+            bottom: "65px",
             right: "28px",
             zIndex: 1100,
           }}
@@ -31,7 +31,7 @@ const ScrollGridBtn = ({scrollToTop, scrollUp}) => {
       <Zoom in={true}>
         <Fab
           color="primary"
-          size="medium"
+          size="small"
           aria-label="scroll up"
           style={{
             position: "fixed",

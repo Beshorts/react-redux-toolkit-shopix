@@ -26,7 +26,8 @@ import { useHandlerButton } from '../elements/customHooks';
 const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.texts.main,
-     [theme.breakpoints.up('lg')]: {
+    marginBottom: 40,
+    [theme.breakpoints.up('lg')]: {
      maxWidth: 1000,
      marginLeft: 'calc(40% - 250px)',
     },
