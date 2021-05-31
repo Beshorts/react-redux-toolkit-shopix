@@ -20,9 +20,6 @@ const ScrollGridBtn = lazy(() => import('./ScrollGridBtn'));
 
 const ProductsGrid = ({ productsFiltered }) => {
 
-  // get custom media query breakpoint to change width cards
-  const mobile = useMediaQuery(theme => theme.breakpoints.down("xs"));
-
   return(
     <div
       className="autoSizer"
@@ -40,14 +37,14 @@ const ProductsGrid = ({ productsFiltered }) => {
       <AutoSizer>
        {({ width, height }) => {
 
-        // change widht cell based on breakpoint
-        const cellWidth = mobile ? 324 : 300;
+        // fixed cell width
+        const cellWidth = 280;
 
         // fixed cell height
         const cellHeight = 300;
 
         /* create a number of columns based on viewport dynamic width and a single cell width
-           for responsive resize of the grid */
+           for responsive grid resize */
         const columnCount = Math.floor(width / cellWidth);
 
         /* create a number of rows based on cards amount and reuslt of colomnCount

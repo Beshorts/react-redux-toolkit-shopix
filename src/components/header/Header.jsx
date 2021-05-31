@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     },
   cart: {
-    fontSize: "1.8rem",
-  }
+    fontSize: "1.6rem",
+  },
 }));
 
 const Header = ({ children, openDrawerCallback }) => {
@@ -77,7 +77,7 @@ const Header = ({ children, openDrawerCallback }) => {
               <Typography variant="h6" className={classes.title} component="h1"  >
                 SHOPIX
               </Typography>
-              <IconButton  aria-label="cart" onClick={handleClick}>
+              <IconButton aria-label="cart" onClick={handleClick}>
                 <Badge overlap="circle" color="secondary" badgeContent={fullQuantityInCart} showZero >
                   <ShoppingCartIcon className={classes.cart} color="primary"/>
                 </Badge>

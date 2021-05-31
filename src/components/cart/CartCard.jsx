@@ -30,8 +30,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: "space-between",
     marginBottom: 12,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.up('xs')]: {
       flexDirection: "column",
+    },
+    [theme.breakpoints.up('sm')]: {
+      flexDirection: "row",
     },
   },
   boxRoot: {
@@ -49,13 +52,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    width: 344,
     padding: 16,
     "&:last-child": {
       paddingBottom: 16,
     },
-    [theme.breakpoints.down('xs')]: {
-      width: 211,
+    [theme.breakpoints.up('xs')]: {
+      width: 180,
+    },
+    [theme.breakpoints.up('md')]: {
+      width: "100%",
     },
   },
   brandProduct: {
