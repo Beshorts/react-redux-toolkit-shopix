@@ -6,8 +6,6 @@ import { FixedSizeGrid as Grid } from 'react-window';
 
 import AutoSizer from 'react-virtualized-auto-sizer';
 
-import { useMediaQuery } from "@material-ui/core";
-
 // style
 import './ProductsGrid.css';
 
@@ -19,7 +17,6 @@ const ProductCard = lazy(() => import('./ProductCard'));
 const ScrollGridBtn = lazy(() => import('./ScrollGridBtn'));
 
 const ProductsGrid = ({ productsFiltered }) => {
-
   return(
     <div
       className="autoSizer"
@@ -38,7 +35,7 @@ const ProductsGrid = ({ productsFiltered }) => {
        {({ width, height }) => {
 
         // fixed cell width
-        const cellWidth = 280;
+        const cellWidth = 260;
 
         // fixed cell height
         const cellHeight = 300;

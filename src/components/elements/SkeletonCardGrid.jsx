@@ -11,11 +11,9 @@ const useStyles = makeStyles((theme) => ({
   skeletonGridContainer: {
     paddingTop: "100px",
   },
-  skeletonGrid: {
+  skeletonCard: {
     margin: "auto",
-    [theme.breakpoints.up('sm')]: {
-     maxWidth: 300,
-    },
+    maxWidth: 260,
   },
 }));
 
@@ -24,11 +22,11 @@ const SkeletonCardGrid = () => {
   const classes = useStyles();
 
   return(
-    <Grid container  className={classes.skeletonGridContainer} spacing={0}>
+    <Grid container  className={classes.skeletonGridContainer} >
       { Array.from(new Array(12)).map( (elem, index) => (
       <Grid  item xs={12} sm={6} md={4} lg={4} xl={3} key={index} >
-        <Box className={classes.skeletonGrid} key={index} >
-          <Skeleton variant="rect" height={260} style={{ marginBottom: 8 }} />
+        <Box className={classes.skeletonCard} key={index} >
+          <Skeleton variant="rect" height={250} style={{ marginBottom: 8 }} />
           <Skeleton variant="text" width="72%" height={10} style={{ marginBottom: 6 }} />
           <Skeleton variant="text" width="30%" height={10} style={{ marginBottom: 8 }} />
         </Box>
