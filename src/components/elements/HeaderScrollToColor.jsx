@@ -11,7 +11,7 @@ const ScrollHandler = props => {
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 10,
+    threshold: 0,
   });
 
   return React.cloneElement(props.children, {
