@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight:"100vh",
     [theme.breakpoints.up('lg')]: {
      maxWidth: 1000,
-     marginLeft: 'calc(40% - 250px)',
+     marginLeft: 'calc(40% - 270px)',
     },
    }
 }));

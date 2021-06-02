@@ -14,13 +14,12 @@ import {fetchProducts} from './features/productsAPI/productsAPISlice';
 import { ThemeProvider, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-import Spinner from './components/elements/spinner/Spinner';
+// import component
+import App from './App';
+
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
-
-// import lazy component
-const App = lazy(() => import('./App'));
 
 // custom theme for styling components
 let theme = createMuiTheme({
@@ -64,9 +63,7 @@ ReactDOM.render(
       <CssBaseline />
         <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-        <Suspense fallback={<Spinner />}>
           <App />
-          </Suspense>
           </PersistGate>
         </Provider>
     </ThemeProvider>,

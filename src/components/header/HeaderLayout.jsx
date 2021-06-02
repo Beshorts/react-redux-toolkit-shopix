@@ -15,7 +15,7 @@ const HeaderLayout = () => {
   const [mobileOpen, openDrawerCallback, closeDrawerCallback] = useDrawer();
 
   return(
-    <Header openDrawerCallback={openDrawerCallback}>
+    <Header mobileOpen={mobileOpen} openDrawerCallback={openDrawerCallback} >
       <Suspense fallback={<div/>}>
         <DrawerCategories mobileOpen={mobileOpen} closeDrawerCallback={closeDrawerCallback} />
       </Suspense>

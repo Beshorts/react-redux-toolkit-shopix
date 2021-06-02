@@ -1,4 +1,4 @@
-import React , { useCallback } from 'react';
+import React , { useCallback, Suspense, lazy } from 'react';
 
 import { useHistory, useLocation } from "react-router-dom";
 
@@ -10,18 +10,20 @@ import { useSelector} from 'react-redux';
 import { fullQuantitySelector } from '../../selectors/cart';
 
 import { makeStyles } from '@material-ui/core/styles';
+import { useMediaQuery } from "@material-ui/core";
 
-// import MUI components
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import HeaderSwitchNavigation from './HeaderSwitchNavigation';
 
 // import elements
 import ScrollToColor from '../elements/HeaderScrollToColor';
+
+// import MUI lazy component
+const AppBar = lazy(() => import('@material-ui/core/AppBar'));
+const Toolbar = lazy(() => import('@material-ui/core/Toolbar'));
+const Badge = lazy(() => import('@material-ui/core/Badge'));
+const IconButton = lazy(() => import('@material-ui/core/IconButton'));
+const Typography = lazy(() => import('@material-ui/core/Typography'));
+const ShoppingCartIcon = lazy(() => import('@material-ui/icons/ShoppingCart'));
+const HeaderSwitchNavigation = lazy(() => import('./HeaderSwitchNavigation'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
@@ -46,13 +48,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ children, openDrawerCallback }) => {
+const Header = ({ children, mobileOpen, openDrawerCallback }) => {
 
   const classes = useStyles();
 
   let history = useHistory();
 
   const location = useLocation();
+
+  // get MUI breakpoint
+  const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up("lg"));
+
+  // logic to mount/unmount DrawerCategories when the component is closed or reach MUI breakpoint
+  const unmountClosedDrawer = isLargeScreen ? mobileOpen = true : mobileOpen ;
 
   // total amount of products added to cart
   const fullQuantityInCart  = useSelector(fullQuantitySelector);
@@ -70,6 +78,7 @@ const Header = ({ children, openDrawerCallback }) => {
   return(
     <React.Fragment>
       <nav >
+         <Suspense fallback={<div/>}>
         <ScrollToColor >
           <AppBar  className={classes.root} elevation={0} >
             <Toolbar  className={classes.toolbarHeader} >
@@ -85,8 +94,13 @@ const Header = ({ children, openDrawerCallback }) => {
             </Toolbar>
           </AppBar>
         </ScrollToColor>
+          </Suspense>
       </nav>
-      {children}
+      { unmountClosedDrawer &&
+        <>
+          {children}
+        </>
+      }
     </React.Fragment>
   )
 };
