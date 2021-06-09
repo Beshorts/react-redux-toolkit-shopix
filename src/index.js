@@ -1,4 +1,4 @@
-import React, {Suspense, lazy} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 
@@ -23,18 +23,23 @@ import reportWebVitals from './reportWebVitals';
 
 // custom theme for styling components
 let theme = createMuiTheme({
+  typography: {
+    fontFamily: [
+    'Roboto',
+    'sans-serif'],
+  },
    palette: {
     background: {
       default: "#F5F5F5",
     },
     // cartIcon + BackIcon
     primary: {
-      main: "#4056F4",
+      main: "#036666",
       contrastText: '#fff',
     },
     // cartBadge
     secondary: {
-       main: "#F65BE3",
+       main: "#ff6000",
        contrastText: '#fff',
     },
     // btn FavoriteIcon onClick
@@ -43,11 +48,11 @@ let theme = createMuiTheme({
     },
      // all texts
     texts: {
-       main: "#114B5F",
+       main: "#19392B",
     },
     // color pricing
     pricingColor: {
-       main: "#bc4d08",
+       main: "#02271B",
     },
   },
 });

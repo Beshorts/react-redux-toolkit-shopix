@@ -2,16 +2,18 @@ import React, {Suspense, lazy} from 'react';
 
 // import components
 import Header from './Header';
-//import DrawerCategories from '../drawer/DrawerCategories';
 
 // import elements
 import { useDrawer } from '../elements/customHooks';
+
+// import lazy component
+//const Header = lazy(() => import('./Header'));
 const DrawerCategories = lazy(() => import('../drawer/DrawerCategories'));
 
 // create component composition
 const HeaderLayout = () => {
 
-  // custom hook to handle Drawer behaviours
+  // destructure custom hook to handle Drawer behaviours
   const [mobileOpen, openDrawerCallback, closeDrawerCallback] = useDrawer();
 
   return(

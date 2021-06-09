@@ -19,7 +19,7 @@ import Typography from '@material-ui/core/Typography';
 // impport elements
 import CartButton from '../elements/CartButton';
 import FavoriteButton from '../elements/FavoriteButton';
-import { useHandlerButton } from '../elements/customHooks';
+import { useAddRemoveCartItem, useAddRemoveFavorite } from '../elements/customHooks';
 
 
 // rules for custom components style
@@ -27,9 +27,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.texts.main,
     marginBottom: 40,
+      minHeight: "100vh",
+    [theme.breakpoints.up('md')]: {
+     maxWidth: 767,
+     marginLeft: 'calc(40% - 180px)',
+    },
     [theme.breakpoints.up('lg')]: {
-     maxWidth: 1000,
-     marginLeft: 'calc(40% - 250px)',
+     maxWidth: 1086,
+     marginLeft: 'calc(40% - 302px)',
+    },
+    [theme.breakpoints.up('xl')]: {
+     maxWidth: 1600,
+     marginLeft: 'calc(40% - 500px)',
     },
   },
   imageBg: {
@@ -41,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   imageProduct: {
     margin: "auto",
-    width: 200,
+    width: 162,
   },
   textAndIcon: {
     width: "100%",
@@ -53,23 +62,25 @@ const useStyles = makeStyles((theme) => ({
   },
   brandName: {
     fontWeight: 700,
-    fontSize: "1.2rem",
+    fontSize: "1.1rem",
   },
   productName: {
-    fontWeight: 700,
+    fontWeight: 500,
   },
   productType: {
     fontWeight: 700,
-    opacity: 0.8,
+    fontSize: "0.9rem",
+    opacity: 0.7,
   },
   productDescription: {
-    fontWeight: 500,
+    fontWeight: 400,
     fontSize: "0.9rem",
     lineHeight: 1.6,
   },
   price: {
     color: theme.palette.pricingColor.main,
-    fontSize: "1.3rem",
+    fontSize: "1rem",
+    fontWeight: 700,
   },
 }));
 
@@ -88,7 +99,8 @@ const ProductDetails = () => {
   const {image_link, brand, id, name, product_type, description, price_sign, price} = singleProduct;
 
   //destructure custom hook
-  const { cartItem, cart, favoriteItem, favorite} = useHandlerButton(id);
+  const { cartItem, cart } = useAddRemoveCartItem(id);
+  const { favoriteItem, favorite } = useAddRemoveFavorite(id);
 
   const handleCartButton = () =>  {
     cart(singleProduct)

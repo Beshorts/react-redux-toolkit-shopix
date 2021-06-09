@@ -10,8 +10,6 @@ import { useSelector} from 'react-redux';
 import { fullQuantitySelector } from '../../selectors/cart';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { useMediaQuery } from "@material-ui/core";
-
 
 // import elements
 import ScrollToColor from '../elements/HeaderScrollToColor';
@@ -29,7 +27,7 @@ const HeaderSwitchNavigation = lazy(() => import('./HeaderSwitchNavigation'));
 const useStyles = makeStyles((theme) => ({
   root: {
     zIndex:  theme.zIndex.drawer + 1,
-    color: theme.palette.texts.main,
+    color: theme.palette.primary.main,
   },
   toolbarHeader: {
     minHeight: 94,
@@ -37,14 +35,13 @@ const useStyles = makeStyles((theme) => ({
   switchBtnBox: {
     width: 66,
   },
-  menuIcon: {
-    },
   title: {
     flexGrow: 1,
-    fontWeight: 600,
+    fontWeight: 700,
+    fontSize: "1.1rem",
     },
   cart: {
-    fontSize: "1.6rem",
+    fontSize: "1.4rem",
   },
 }));
 
@@ -55,12 +52,6 @@ const Header = ({ children, mobileOpen, openDrawerCallback }) => {
   let history = useHistory();
 
   const location = useLocation();
-
-  // get MUI breakpoint
-  const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up("lg"));
-
-  // logic to mount/unmount DrawerCategories when the component is closed or reach MUI breakpoint
-  const unmountClosedDrawer = isLargeScreen ? mobileOpen = true : mobileOpen ;
 
   // total amount of products added to cart
   const fullQuantityInCart  = useSelector(fullQuantitySelector);
@@ -76,11 +67,10 @@ const Header = ({ children, mobileOpen, openDrawerCallback }) => {
   },[history, isCartPage]);
 
   return(
-    <React.Fragment>
-      <nav >
-         <Suspense fallback={<div/>}>
+    <>
+      <Suspense fallback={<div/>}>
         <ScrollToColor >
-          <AppBar  className={classes.root} elevation={0} >
+          <AppBar  className={classes.root} elevation={0} role="navigation">
             <Toolbar  className={classes.toolbarHeader} >
               <HeaderSwitchNavigation openDrawerCallback={openDrawerCallback} />
               <Typography variant="h6" className={classes.title} component="h1"  >
@@ -94,14 +84,9 @@ const Header = ({ children, mobileOpen, openDrawerCallback }) => {
             </Toolbar>
           </AppBar>
         </ScrollToColor>
-          </Suspense>
-      </nav>
-      { unmountClosedDrawer &&
-        <>
-          {children}
-        </>
-      }
-    </React.Fragment>
+      </Suspense>
+        {children}
+    </>
   )
 };
 
@@ -109,5 +94,6 @@ export default Header;
 
 Header.propTypes = {
   children: PropTypes.element.isRequired,
+  mobileOpen: PropTypes.bool.isRequired,
   openDrawerCallback: PropTypes.func.isRequired,
 }

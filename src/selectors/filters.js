@@ -11,3 +11,4 @@ export const productsSelected = createSelector(
   (entities, filterBy) => entities.filter(elem =>
     elem.product_type === filterBy)
 );
+

@@ -9,17 +9,17 @@ import Box from '@material-ui/core/Box';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 // import elements
-import { useHandlerButton } from '../elements/customHooks';
+import { useQuantityCounter } from '../elements/customHooks';
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
-    boxPriceAndBtn: {
-    display: "flex",
-      padding: 16,
-    [theme.breakpoints.up('xs')]: {
+    root: {
+     display: "flex",
+     padding: "0px 16px 16px 16px",
+     [theme.breakpoints.up('xs')]: {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
@@ -28,16 +28,40 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       flexDirection: "column",
       justifyContent: "space-between",
-      alignItems: "flex-start",
-      padding: 16,
+      alignItems: "flex-end",
+      padding: "16px 22px 16px 16px",
     },
   },
   productPrice: {
     color: theme.palette.pricingColor.main,
-    fontSize: "1.2rem",
+    fontSize: "0.9rem",
+    fontWeight: 500,
   },
   btnActions: {
-    padding: "8px 4px 8px 0px",
+    padding: 0,
+  },
+    btnRoot: {
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 8,
+    minWidth: 0,
+    padding: 2,
+      backgroundColor: "#ff6000",
+    "&:hover": {
+    backgroundColor: "#94778B",
+    },
+  },
+  addBtn: {
+    color: "#FFFF",
+    fontSize: "1.1rem",
+  },
+  quantityText: {
+    minWidth: 0,
+  },
+  removeBtn: {
+    color: "#FFFF",
+    fontSize: "1.1rem",
   },
 }));
 
@@ -49,7 +73,7 @@ const CartCardButton = ({ product }) => {
   const {id, price_sign} = product;
 
   //destructure custom hook
-  const {getCurrentCartItem, addQuantity, removeQuantity} = useHandlerButton(id);
+  const { getCurrentCartItem, addQuantity, removeQuantity } = useQuantityCounter(id);
 
   const handleAddSingleQuantity = () =>  {
     addQuantity(product);
@@ -62,26 +86,34 @@ const CartCardButton = ({ product }) => {
   return(
     <React.Fragment>
       {getCurrentCartItem.id === id && (
-        <Box className={classes.boxPriceAndBtn} key={id}>
-          <Typography className={classes.productPrice} variant="h6" component="h6" >
+        <Box className={classes.root} key={id}>
+              <Typography className={classes.productPrice} variant="h6" component="h6" >
             {price_sign}{getCurrentCartItem.price}
           </Typography>
           <CardActions className={classes.btnActions}  >
-            <ButtonGroup aria-label="small outlined button group" >
+            <Box aria-label="small button group" >
               <Button
+                className={classes.btnRoot}
+                size="small"
+                aria-label="add"
+                variant="contained"
                 onClick={handleAddSingleQuantity}
               >
-              +
+              <AddIcon className={classes.addBtn} />
               </Button>
-              <Button >
+              <Button className={classes.quantityText} >
                 {getCurrentCartItem.quantity}
               </Button>
               <Button
+                className={classes.btnRoot}
+                size="small"
+                aria-label="remove"
+                variant="contained"
                 onClick={handleRemoveSingleQuantity}
               >
-              -
+              <RemoveIcon className={classes.removeBtn} />
               </Button>
-            </ButtonGroup>
+            </Box>
           </CardActions>
         </Box>
       )}
