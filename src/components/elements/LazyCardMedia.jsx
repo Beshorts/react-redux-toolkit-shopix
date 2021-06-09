@@ -36,9 +36,10 @@ const LazyCardMedia = elem => {
     />
     :
     <div
-      style={{height: height, backgroundColor: "#48C9D1", opacity: ".4"}}
+      style={{height: height, backgroundColor: "#99d98c", opacity: ".4"}}
       aria-label={alt}
       ref={placeholderRef}
+     // offset={250}
     />
   );
 };
@@ -46,7 +47,7 @@ const LazyCardMedia = elem => {
 export default LazyCardMedia;
 
 LazyCardMedia.propTypes = {
-  elem: PropTypes.shape({
+    elem: PropTypes.shape({
     className: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     alt: PropTypes.string.isRequired,

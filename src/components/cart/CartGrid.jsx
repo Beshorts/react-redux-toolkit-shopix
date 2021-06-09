@@ -10,6 +10,7 @@ import {
 } from '../../selectors/cart';
 
 import { makeStyles } from '@material-ui/core/styles';
+
 //import Mui components
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -32,12 +33,21 @@ import ScrollToTopOnPage from '../elements/ScrollToTopOnPage';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
-    marginBottom: 60,
+    paddingBottom: 80,
     display: "flex",
     flexDirection: "column",
+        minHeight: "100vh",
+    [theme.breakpoints.up('md')]: {
+     maxWidth: 415,
+     marginLeft: 'calc(40% - 180px)',
+    },
     [theme.breakpoints.up('lg')]: {
-     maxWidth: 1000,
-     marginLeft: 'calc(40% - 250px)',
+     maxWidth: 492,
+     marginLeft: 'calc(40% - 320px)',
+    },
+    [theme.breakpoints.up('xl')]: {
+     maxWidth: 800,
+     marginLeft: 'calc(20% - 300px)',
     },
   },
   cardCartSummary: {
@@ -83,13 +93,13 @@ const CartGrid = () => {
             <Typography gutterBottom variant="subtitle1" component="h2" className={classes.headerCart}>
               { fullQuantityInCart === 0
                 ? "any products added yet"
-                : `products added: ${fullQuantityInCart}`
+                : `${fullQuantityInCart} items added`
               }
             </Typography>
             <Typography gutterBottom variant="subtitle1" component="h3" className={classes.headerCart}>
              { products.length === 0
                ? null
-               : `total purchases: $${(totalPurchase.toFixed(2))}`
+               : `purchase $${(totalPurchase.toFixed(2))}`
              }
             </Typography>
           </Card>
@@ -103,7 +113,7 @@ const CartGrid = () => {
         ))}
       </Grid>
       <ScrollToTopOnPage >
-        <Fab color="primary" size="large" aria-label="scroll back to top">
+        <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollToTopOnPage>

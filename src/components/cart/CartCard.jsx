@@ -43,36 +43,44 @@ const useStyles = makeStyles((theme) => ({
   media: {
     marginLeft: theme.spacing(1),
     margin: "auto",
-    width: 100,
+    width: 62,
     backgroundSize: "cover",
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(2),
+    },
   },
   content: {
     flexGrow: 1,
     color: theme.palette.texts.main,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    padding: 16,
+    padding: "16px 16px 0 16px",
     "&:last-child": {
-      paddingBottom: 16,
+     paddingBottom: 0,
     },
     [theme.breakpoints.up('xs')]: {
       width: 180,
     },
-    [theme.breakpoints.up('md')]: {
-      width: "100%",
+    [theme.breakpoints.up('sm')]: {
+    padding: 16,
+    "&:last-child": {
+      paddingBottom: 16,
+     },
     },
   },
   brandProduct: {
-   fontWeight: 700,
+   color: theme.palette.primary.main,
+   fontWeight: 500,
+   fontSize: "1rem",
   },
   nameProduct: {
-   fontSize: "1rem",
-   fontWeight: 500,
+   fontSize: "0.9rem",
+   fontWeight: 400,
   },
   productInfoType: {
-    opacity: 0.8,
-    fontWeight: 700,
+    color: theme.palette.primary.main,
+    fontSize: "0.9rem",
+    fontWeight: 500,
   },
   btnDetails: {
     padding: 0,
@@ -80,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
   },
   btnDetailslabel: {
     justifyContent: "flex-start",
+    color: "#6e5867",
+    fontSize: "0.8rem",
+    fontWeight: 500,
     "&:hover": {
      color: "grey",
     },
@@ -104,7 +115,7 @@ const CartCard = ({ product }) => {
                   className={classes.media}
                   image={image_link}
                   alt="Make Up product"
-                  height={100}
+                  height={60}
                 />
                 <CardContent className={classes.content}>
                   <Typography className={classes.brandProduct} variant="h6" component="h4" >
@@ -113,7 +124,7 @@ const CartCard = ({ product }) => {
                   <Typography className={classes.nameProduct} noWrap variant="h6" component="h5">
                     {name}
                   </Typography>
-                  <Typography className={classes.productInfoType} gutterBottom noWrap variant="subtitle2" component="h6" >
+                  <Typography className={classes.productInfoType} noWrap variant="subtitle2" component="h6" >
                     {product_type}
                   </Typography>
                   <CardActions className={classes.btnDetails} >
