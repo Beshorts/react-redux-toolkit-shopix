@@ -33,7 +33,7 @@ import ScrollToTopOnPage from '../elements/ScrollToTopOnPage';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   rootContainer: {
-    paddingBottom: 80,
+    paddingBottom: theme.spacing(10),
     display: "flex",
     flexDirection: "column",
         minHeight: "100vh",
@@ -51,22 +51,21 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardCartSummary: {
-    marginTop: 112,
+    marginTop: theme.spacing(14),
     marginBottom: theme.spacing(2),
     color: theme.palette.texts.main,
     display: "flex",
     [theme.breakpoints.up('xs')]: {
      flexDirection: "column",
-     padding: 16,
+     padding: theme.spacing(2),
     },
     [theme.breakpoints.up('sm')]: {
      flexDirection: "row",
      justifyContent: "space-between",
-     padding: "16px 20px",
+     padding: theme.spacing(2, 2.5),
     },
   },
   headerCart: {
-   marginBottom: 0,
    fontWeight: 500,
   },
 
@@ -90,13 +89,13 @@ const CartGrid = () => {
       <div>
         <Grow in={true} timeout={500}>
           <Card className={classes.cardCartSummary} id="back-to-top-anchor">
-            <Typography gutterBottom variant="subtitle1" component="h2" className={classes.headerCart}>
+            <Typography  variant="subtitle1" component="h2" className={classes.headerCart}>
               { fullQuantityInCart === 0
                 ? "any products added yet"
                 : `${fullQuantityInCart} items added`
               }
             </Typography>
-            <Typography gutterBottom variant="subtitle1" component="h3" className={classes.headerCart}>
+            <Typography variant="subtitle1" component="h3" className={classes.headerCart}>
              { products.length === 0
                ? null
                : `purchase $${(totalPurchase.toFixed(2))}`
@@ -105,7 +104,7 @@ const CartGrid = () => {
           </Card>
         </Grow>
       </div>
-      <Grid container spacing={1}>
+      <Grid container >
         {products.map(product => (
           <Grid  item xs={12} sm={12} md={12} lg={12} xl={12} key={product.id} >
             <CartCard product={product} key={product.id} />

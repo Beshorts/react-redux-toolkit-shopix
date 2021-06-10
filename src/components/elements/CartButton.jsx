@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: 0,
     borderTopLeftRadius: 8,
     minWidth: 0,
-    padding: 2,
+    padding: theme.spacing(2),
     "&:hover": {
       backgroundColor: "#71A215",
     },

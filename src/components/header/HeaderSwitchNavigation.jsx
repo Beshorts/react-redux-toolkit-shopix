@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     color: "inherit",
     },
     fabIcon: {
-     marginRight: 3,
+     marginRight: theme.spacing(0.375),
     },
 }));
 

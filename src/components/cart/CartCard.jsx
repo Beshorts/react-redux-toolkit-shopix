@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   rootCard: {
     display: 'flex',
     justifyContent: "space-between",
-    marginBottom: 12,
+    marginBottom: theme.spacing(1.5),
     [theme.breakpoints.up('xs')]: {
       flexDirection: "column",
     },
@@ -54,17 +54,17 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.texts.main,
     display: "flex",
     flexDirection: "column",
-    padding: "16px 16px 0 16px",
+    padding: theme.spacing(2, 2, 0, 2),
     "&:last-child": {
-     paddingBottom: 0,
+     paddingBottom: theme.spacing(0),
     },
     [theme.breakpoints.up('xs')]: {
       width: 180,
     },
     [theme.breakpoints.up('sm')]: {
-    padding: 16,
+    padding: theme.spacing(2),
     "&:last-child": {
-      paddingBottom: 16,
+      paddingBottom: theme.spacing(2),
      },
     },
   },
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
   },
   btnDetails: {
-    padding: 0,
+    padding: theme.spacing(0),
     textTransform: "lowercase",
   },
   btnDetailslabel: {

@@ -18,18 +18,18 @@ import { useQuantityCounter } from '../elements/customHooks';
 const useStyles = makeStyles((theme) => ({
     root: {
      display: "flex",
-     padding: "0px 16px 16px 16px",
+     padding: theme.spacing(0, 2, 2, 2),
      [theme.breakpoints.up('xs')]: {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      paddingTop: 0,
+      paddingTop: theme.spacing(0),
     },
     [theme.breakpoints.up('sm')]: {
       flexDirection: "column",
       justifyContent: "space-between",
       alignItems: "flex-end",
-      padding: "16px 22px 16px 16px",
+      padding: theme.spacing(2, 2.75, 2, 2),
     },
   },
   productPrice: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
   },
   btnActions: {
-    padding: 0,
+    padding: theme.spacing(0),
   },
     btnRoot: {
     borderBottomRightRadius: 8,
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     borderTopRightRadius: 0,
     borderTopLeftRadius: 8,
     minWidth: 0,
-    padding: 2,
+    padding: theme.spacing(0.25),
       backgroundColor: "#ff6000",
     "&:hover": {
     backgroundColor: "#94778B",

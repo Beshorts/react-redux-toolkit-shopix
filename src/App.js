@@ -21,18 +21,28 @@ const App = () => {
 
   return (
     <div className="App">
-        <Router>
+      <Router>
         <Suspense fallback={<Spinner/>}>
           <HeaderLayout />
             <Switch>
-              <Route exact path="/" render={() => <HomePage />}/>
-  >            <Route  path='/products/:category' render={() => <ProductsPage />} />
-              <Route path="/product/:productId" render={() => <ProductDetails />} />
-              <Route path="/my_cart" render={() => <CartGrid />} />
-              <Route path='*' render={() => <NotFoundPage />} / >
+              <Route exact path="/" >
+                <HomePage />
+              </Route>
+              <Route  path='/products/:category'>
+                <ProductsPage />
+              </Route>
+              <Route path="/product/:productId" >
+                <ProductDetails />
+              </Route>
+              <Route path="/my_cart">
+                <CartGrid />
+              </Route>
+              <Route path='*' >
+                <NotFoundPage />
+              </Route>
             </Switch>
-      </Suspense>
-        </Router>
+        </Suspense>
+      </Router>
     </div>
   )
 };
