@@ -11,8 +11,6 @@ import Drawer from '@material-ui/core/Drawer';
 
 const DrawerList = lazy(() => import('./DrawerList'));
 
-//import DrawerList from './DrawerList';
-
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {

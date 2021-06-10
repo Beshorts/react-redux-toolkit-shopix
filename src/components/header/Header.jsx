@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   toolbarHeader: {
-    minHeight: 94,
+    minHeight: theme.spacing(11.75),
   },
   switchBtnBox: {
     width: 66,

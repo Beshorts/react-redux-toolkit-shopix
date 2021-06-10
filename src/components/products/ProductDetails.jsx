@@ -26,7 +26,7 @@ import { useAddRemoveCartItem, useAddRemoveFavorite } from '../elements/customHo
 const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.texts.main,
-    marginBottom: 40,
+    marginBottom: theme.spacing(5),
       minHeight: "100vh",
     [theme.breakpoints.up('md')]: {
      maxWidth: 767,
@@ -43,13 +43,13 @@ const useStyles = makeStyles((theme) => ({
   },
   imageBg: {
     backgroundColor: "#FFF",
-    marginTop: 90,
-    paddingTop: 30,
-    paddingBottom: 30,
     display: "grid",
+    marginTop: theme.spacing(11.25),
+    paddingTop: theme.spacing(3.75),
+    paddingBottom: theme.spacing(3.75),
   },
   imageProduct: {
-    margin: "auto",
+    margin: theme.spacing(0,'auto'),
     width: 162,
   },
   textAndIcon: {
@@ -57,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 16,
-    paddingBottom: 16,
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2),
   },
   brandName: {
     fontWeight: 700,

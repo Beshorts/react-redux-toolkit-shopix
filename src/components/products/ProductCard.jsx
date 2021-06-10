@@ -25,7 +25,7 @@ const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: 14,
+    marginRight: theme.spacing(1.75),
     borderRadius: 8,
     color: theme.palette.texts.main,
   },
@@ -33,12 +33,12 @@ const useStyles = makeStyles((theme) => ({
    width: "100%",
   },
   media: {
-    margin: "auto",
+    margin: theme.spacing(0, 'auto'),
     width: 84,
     backgroundSize: "cover",
   },
   cardHeader: {
-   padding: "10px 16px 0 16px",
+   padding: theme.spacing(1.25, 2, 0, 2),
   },
   nameProduct: {
    textAlign: "center",
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardAction: {
     justifyContent: "space-between",
-    padding: "0px 16px 8px 16px"
+    padding:theme.spacing(0, 2, 1.5, 2),
   },
   priceProduct: {
    color: theme.palette.pricingColor.main,

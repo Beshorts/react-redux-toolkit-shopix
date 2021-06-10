@@ -9,10 +9,10 @@ import Skeleton from '@material-ui/lab/Skeleton';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   skeletonGridContainer: {
-    paddingTop: "100px",
+    paddingTop: theme.spacing(12.5),
   },
   skeletonCard: {
-    margin: "auto",
+    margin: theme.spacing(0, 'auto'),
     maxWidth: 260,
   },
 }));
@@ -26,9 +26,9 @@ const SkeletonCardGrid = () => {
       { Array.from(new Array(12)).map( (elem, index) => (
       <Grid  item xs={12} sm={6} md={4} lg={4} xl={3} key={index} >
         <Box className={classes.skeletonCard} key={index} >
-          <Skeleton variant="rect" height={250} style={{ marginBottom: 8 }} />
-          <Skeleton variant="text" width="72%" height={10} style={{ marginBottom: 6 }} />
-          <Skeleton variant="text" width="30%" height={10} style={{ marginBottom: 8 }} />
+          <Skeleton variant="rect" height={250} />
+          <Skeleton variant="text" width="72%" height={10}  />
+          <Skeleton variant="text" width="30%" height={10} />
         </Box>
       </Grid>
      ))}

@@ -41,13 +41,13 @@ const useStyles = makeStyles((theme) => ({
     height: 94,
   },
   listItem: {
-    padding: "16px 0 16px 40px",
+    padding: theme.spacing(2, 0, 2, 5),
    "& .MuiListItemIcon-root": {
      minWidth: 30,
    },
   },
   listHeader: {
-    padding: "20px 0 20px 24px",
+    padding: theme.spacing(2.5, 0, 2.5, 3),
     fontSize: "1.1rem",
   },
   listItemText: {

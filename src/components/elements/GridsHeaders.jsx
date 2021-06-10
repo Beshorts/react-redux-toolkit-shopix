@@ -14,21 +14,21 @@ import Emoji from '../elements/Emoji';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: 6,
+    marginBottom: theme.spacing(0.75),
     width: 300,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
   },
   gridHeaderText: {
-    marginRight: 6,
+    marginRight: theme.spacing(0.75),
     color: theme.palette.texts.main,
     fontSize: "0.9rem"
 ,    fontWeight: 500,
   },
     gridHeaderSubtitle: {
-    marginLeft: 2,
-    marginTop: 3,
+    marginLeft: theme.spacing(0.25),
+    marginTop: theme.spacing(0.375),
     color: "#6d706d",
     fontSize: "0.75rem",
     fontWeight: 700,
