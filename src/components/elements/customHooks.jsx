@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useMemo} from 'react';
 
 import {useSelector,useDispatch} from 'react-redux';
 
@@ -13,7 +13,7 @@ import {
 import { addToFavorite, removeFromFavorite } from '../../features/favorites/favoriteSlice';
 
 // handle open and close Drawer
-export function  useDrawer() {
+export const  useDrawer = () => {
 
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -28,23 +28,18 @@ export function  useDrawer() {
 
 
 /* manage onClick events and keep track to UI logic on refresh page */
-export  function useHandlerButton(value) {
+export  const useAddRemoveCartItem = (value) => {
 
   const dispatch = useDispatch();
 
   // get states
   const cartItems = useSelector(state => state.cart.cartItems)
-  const favorites = useSelector(state => state.favorite.favoriteProducts)
 
   // get current element based on passed value
   const getCurrentCartItem = cartItems.find(elem => elem.id === value);
-  const getCurrentFavoriteItem = favorites.find(elem => elem.id === value);
 
   // initialize hooks state to manage UI logic
   const [cartItem, setCartItem] = useState(getCurrentCartItem || false);
-  const [favoriteItem, setFavoriteItem] = useState(getCurrentFavoriteItem || false)
-  const [state, setState] = useState(false);
-
 
   const cart = item => {
     setCartItem(true)
@@ -56,6 +51,28 @@ export  function useHandlerButton(value) {
     }
   };
 
+return {
+  // hooks states
+  cartItem,
+  // handlers for redux actions
+  cart,
+ };
+};
+
+export  const useAddRemoveFavorite = (value) => {
+
+  const dispatch = useDispatch();
+
+  // get states
+  const favorites = useSelector(state => state.favorite.favoriteProducts)
+
+  // get current element based on passed value
+  const getCurrentFavoriteItem = favorites.find(elem => elem.id === value);
+
+  // initialize hooks state to manage UI logic
+  const [favoriteItem, setFavoriteItem] = useState(getCurrentFavoriteItem || false)
+
+
   const favorite = item => {
     setFavoriteItem(true)
     if (favoriteItem) {
@@ -65,6 +82,29 @@ export  function useHandlerButton(value) {
       dispatch(addToFavorite(item.id))
     }
   };
+
+return {
+  // hooks states
+  favoriteItem,
+  // handlers for redux actions
+  favorite,
+ };
+};
+
+/* manage onClick events and keep track to UI logic on refresh page */
+export  const useQuantityCounter = (value) => {
+
+  const dispatch = useDispatch();
+
+  // get states
+  const cartItems = useSelector(state => state.cart.cartItems)
+
+  // get current element based on passed value
+  const getCurrentCartItem = cartItems.find(elem => elem.id === value);
+
+  // initialize hooks state to manage UI logic
+  const [state, setState] = useState(false);
+
 
   const addQuantity = item => {
     dispatch(incrementQuantity(item));
@@ -79,16 +119,42 @@ export  function useHandlerButton(value) {
 return {
   // current state
   getCurrentCartItem,
-  // hooks states
-  cartItem,
-  favoriteItem,
   // handlers for redux actions
-  favorite,
-  cart,
   addQuantity,
   removeQuantity
  };
 };
 
+
+// create one Row Grid with variable heights and parameters
+export const  useOneRowGrid = (height,value) => {
+
+  // manage width based on height parameters
+  let cellWidth = 0;
+  height >= 300 ? cellWidth = 320 : cellWidth = 166;
+  // fixed cell height
+  const cellHeight = height;
+  // fixed row
+  const rowCount = 1;
+  // create columns based on elements length spammed on rowCount result
+  const columnCount = Math.ceil(value.length / rowCount);
+
+  // memoize grid state
+  const itemData = useMemo(
+    () => ({
+      columnCount,
+      value,
+    }),
+    [columnCount, value]
+  );
+
+  return {
+    cellHeight,
+    cellWidth,
+    rowCount,
+    columnCount,
+    itemData,
+  }
+};
 
 

@@ -7,41 +7,47 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // import MUI components
 import Button from "@material-ui/core/Button";
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
-  btnAddToCart: {
-    background: 'linear-gradient(274deg, rgba(64,86,244,1) 0%, rgba(15,189,250,1) 100%)',
-    borderRadius: 16,
-    fontSize: "0.8rem",
-    color: "#FFF",
-    fontWeight: 700,
+  root: {
+    borderBottomRightRadius:8,
+    borderBottomLeftRadius: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 8,
+    minWidth: 0,
+    padding: theme.spacing(2),
+    "&:hover": {
+      backgroundColor: "#71A215",
+    },
   },
-  btnRemoveFromCart: {
-    background: 'linear-gradient(94deg, rgba(215,71,128,1) 0%, rgba(213,0,224,1) 100%)',
-    borderRadius: 16,
-    fontSize: "0.8rem",
-    fontWeight: 700,
-    color: "#FFF",
+  addBtn: {
+    color: "#FFFF",
+    fontSize: "1.1rem",
+  },
+  removeBtn: {
+    color: "#FFFF",
+    fontSize: "1.1rem",
   },
 }));
 
-const CartButton = ({ added, onClick }) => {
 
+const CartButton = ({ added, onClick }) => {
   const classes = useStyles();
+
   return(
-    <Button
-      className={added ? `${classes.btnRemoveFromCart}` : `${classes.btnAddToCart}` }
-      disableElevation
-      variant="contained"
-      startIcon={ added ?  <RemoveCircleIcon  /> : <AddShoppingCartIcon /> }
-      aria-label={ added ? "remove" : "add" }
-      onClick={ onClick }
-    >
-      { added ? "remove" : "add" }
+     <Button onClick={onClick}
+     variant="contained"
+     className={classes.root}
+     aria-label={ added ? "remove" : "add" }
+     style={{backgroundColor: added ? "#94778B" : "#67B99A"}}
+      >
+      {added ? <RemoveIcon className={classes.removeBtn}  color="secondary"  /> : <AddIcon className={classes.addBtn}/>}
     </Button>
+
 
   )
 };

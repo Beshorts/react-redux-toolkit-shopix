@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
 // import elements
-import { useAddRemoveCartItem, useAddRemoveFavorite } from '../elements/customHooks';
+import { useAddRemoveFavorite } from '../elements/customHooks';
 
 // import MUI components as lazy load
 const Card = lazy(() => import('@material-ui/core/Card'));
@@ -17,7 +17,6 @@ const CardActions = lazy(() => import('@material-ui/core/CardActions'));
 const CardContent = lazy(() => import('@material-ui/core/CardContent'));
 const Typography = lazy(() => import('@material-ui/core/Typography'));
 // import elements as lazy load
-const CartButton = lazy(() => import('../elements/CartButton'));
 const FavoriteButton = lazy(() => import('../elements/FavoriteButton'));
 const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 
@@ -40,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
   cardHeader: {
    padding: theme.spacing(1.25, 2, 0, 2),
   },
+  cardContent: {
+   padding: theme.spacing(2, 2, 0 ,2),
+  },
   nameProduct: {
    textAlign: "center",
    opacity: 0.8,
@@ -47,8 +49,9 @@ const useStyles = makeStyles((theme) => ({
    fontWeight: 400,
   },
   cardAction: {
-    justifyContent: "space-between",
-    padding:theme.spacing(0, 2, 1.5, 2),
+    display: "block",
+    padding: theme.spacing(0, 2, 1, 2),
+   textAlign: "center",
   },
   priceProduct: {
    color: theme.palette.pricingColor.main,
@@ -57,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
+const HighLightCard = ({ columnIndex, rowIndex, style, data }) => {
   const classes = useStyles();
 
   // destructure data
@@ -68,24 +71,19 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
 
   /* create single card objects from array up to singleColumn result,
    when user scroll the grid recreate them with new objects from the array */
-  const productCard = value[singleColumnIndex];
-
-  // destructure object
-  const { id, image_link, name, price_sign, price } = productCard;
+  const highLightCard = value[singleColumnIndex];
 
   // check if card exist and retrieve its id
-  const checkId = productCard ? id : null;
+  const checkId = highLightCard ? highLightCard.id : null;
 
-  // destructure custom hooks
-  const { cartItem, cart } = useAddRemoveCartItem(checkId);
+  // destructure custom hook
   const { favoriteItem, favorite } = useAddRemoveFavorite(checkId);
 
-  const handleCartButton = () =>  {
-    cart(productCard)
-  };
+  // destructure obbject
+  const {id, image_link, name, price_sign, price} = highLightCard;
 
   const handleFavoriteButton = () => {
-    favorite(productCard)
+    favorite(highLightCard)
   };
 
   const cellContainerStyle = {
@@ -94,10 +92,9 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
     display: "inline-block",
   };
 
-
   return(
     <div style={style} className="cellContainer">
-      {productCard && (
+      {highLightCard && (
       <div
       className="cell"
       id={id}
@@ -125,7 +122,7 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
                 image={image_link}
                 height={80}
               />
-              <CardContent >
+              <CardContent className={classes.cardContent} >
                 <Typography className={classes.nameProduct} noWrap variant="h6" component="h1" >
                   {name}
                 </Typography>
@@ -135,10 +132,6 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
               <Typography className={classes.priceProduct}  variant="h6" component="h2">
                  {price_sign}{price}
               </Typography>
-              <CartButton
-                 added={cartItem}
-                 onClick={handleCartButton}
-              />
             </CardActions>
           </Card>
         </Suspense>
@@ -149,16 +142,15 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
   )
 };
 
-export default ProductCard;
+export default HighLightCard;
 
-ProductCard.propTypes = {
+HighLightCard.propTypes = {
   columnIndex: PropTypes.number.isRequired,
   rowIndex: PropTypes.number.isRequired,
   style: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  productCard: PropTypes.shape({
+  highLightCard: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    brand: PropTypes.string.isRequired,
     image_link: PropTypes.string.isRequired,
     price_sign: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,

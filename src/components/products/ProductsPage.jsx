@@ -17,25 +17,28 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // Mui components
 import Container from '@material-ui/core/Container';
-
 // import elements
 import Error from '../elements/errors/Error';
 import SkeletonCardGrid from '../elements/SkeletonCardGrid';
 
 // import lazy component
-const ProductsGrid = lazy(() => import('./ProductsGrid'));
+const AutoSizerGrids = lazy(() => import('../virtualizedGrids/AutoSizerGrids'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: "fixed",
+    minHeight: "100vh",
+    [theme.breakpoints.up('md')]: {
+     maxWidth: 769,
+     marginLeft: 'calc(40% - 180px)',
+    },
     [theme.breakpoints.up('lg')]: {
-     maxWidth: 1000,
-     marginLeft: 'calc(40% - 250px)',
+     maxWidth: 1092,
+     marginLeft: 'calc(40% - 302px)',
     },
     [theme.breakpoints.up('xl')]: {
-     maxWidth: 1280,
-     marginLeft: 'calc(40% - 380px)',
+     maxWidth: 1600,
+     marginLeft: 'calc(40% - 500px)',
     },
   },
 }));
@@ -56,11 +59,8 @@ const ProductsPage = () => {
     // API error response
   const error = useSelector(state => state.products.error);
 
-  // memoize selector to get products filtered by param
+  // memoize selector to get products filtered by current param
   const filteredByCategory = useSelector(productsSelected);
-
-  // state of products filtered by category
-  const productsFiltered = useSelector(state => state.products.productsFiltered);
 
   useEffect(() => {
     if (isProductsLoaded) {
@@ -76,18 +76,16 @@ const ProductsPage = () => {
   },[dispatch, filteredByCategory]);
 
   return(
-    <React.Fragment>
-      <Container className={classes.root} >
-          { isProductsLoaded
-            ? <Suspense fallback={<SkeletonCardGrid/>} >
-                <ProductsGrid productsFiltered={productsFiltered} />
-              </Suspense>
-            : error
-            ? <Error />
-            : <SkeletonCardGrid/>
-          }
-      </Container>
-    </React.Fragment>
+    <Container className={classes.root} >
+      { isProductsLoaded
+        ? <Suspense fallback={<div/>} >
+            <AutoSizerGrids />
+          </Suspense>
+        : error
+        ? <Error />
+        : <SkeletonCardGrid/>
+      }
+    </Container>
   )
 };
 

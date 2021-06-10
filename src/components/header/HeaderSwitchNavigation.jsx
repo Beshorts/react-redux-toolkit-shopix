@@ -22,13 +22,13 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   switchBtnBox: {
-    width: 66,
+    width: 56,
   },
   menuIcon: {
     color: "inherit",
     },
     fabIcon: {
-     marginRight: 3,
+     marginRight: theme.spacing(0.375),
     },
 }));
 
@@ -40,9 +40,9 @@ const HeaderSwitchNavigation = ({ openDrawerCallback }) => {
 
   const location = useLocation();
 
-  /* disable Menu btn when categories drawer is permanent on desktop size (lg and up)
+  /* disable Menu btn when categories drawer is permanent on desktop size (mc and up)
      useMediaQuery automatically provides useTheme() as an argument */
-  const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up("lg"));
+  const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up("md"));
 
   // create variable to switch ArrowBackIcon btn on the right path
   const productDetails = useRouteMatch('/product/:productId');
@@ -57,7 +57,7 @@ const HeaderSwitchNavigation = ({ openDrawerCallback }) => {
     <Box className={classes.switchBtnBox}>
       { displayUi &&
         <Zoom in={true} unmountOnExit  >
-          <Fab color="primary" aria-label="go back" onClick={handleBackClick} >
+          <Fab color="primary" size="small" aria-label="go back" onClick={handleBackClick} >
             <ArrowBackIcon />
           </Fab>
         </Zoom>
@@ -70,7 +70,7 @@ const HeaderSwitchNavigation = ({ openDrawerCallback }) => {
             aria-label="Menu"
             onClick={openDrawerCallback}
           >
-            <MenuIcon fontSize="large" />
+            <MenuIcon fontSize="small" />
           </IconButton>
         </Zoom>
       }
