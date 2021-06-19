@@ -36,24 +36,20 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(10),
     display: "flex",
     flexDirection: "column",
-        minHeight: "100vh",
+    minHeight: "100vh",
     [theme.breakpoints.up('md')]: {
      maxWidth: 415,
-     marginLeft: 'calc(40% - 180px)',
     },
     [theme.breakpoints.up('lg')]: {
      maxWidth: 492,
-     marginLeft: 'calc(40% - 320px)',
     },
     [theme.breakpoints.up('xl')]: {
      maxWidth: 800,
-     marginLeft: 'calc(20% - 300px)',
     },
   },
   cardCartSummary: {
-    marginTop: theme.spacing(14),
-    marginBottom: theme.spacing(2),
-    color: theme.palette.texts.main,
+    margin: theme.spacing(14, 0, 2, 0),
+    color: theme.palette.primary.main,
     display: "flex",
     [theme.breakpoints.up('xs')]: {
      flexDirection: "column",

@@ -30,8 +30,8 @@ import {
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.texts.main,
-    fontWeight: 500,
+    color: theme.palette.primary.main,
+    fontWeight: 400,
     width: 222,
   },
   fullList: {
@@ -41,20 +41,19 @@ const useStyles = makeStyles((theme) => ({
     height: 94,
   },
   listItem: {
-    padding: theme.spacing(2, 0, 2, 5),
    "& .MuiListItemIcon-root": {
      minWidth: 30,
    },
   },
   listHeader: {
-    padding: theme.spacing(2.5, 0, 2.5, 3),
+    padding: theme.spacing(2.5, 0, 2.5, 2),
     fontSize: "1.1rem",
   },
   listItemText: {
    fontSize: "0.9rem",
   },
   homeIcon: {
-    color: theme.palette.texts.main,
+    color: theme.palette.primary.main,
     fontSize: "1.1rem",
   },
   customListIcon: {
@@ -75,24 +74,17 @@ const  DrawerList = ({anchor, closeDrawerCallback}) => {
   const [selectedIndex, setSelectedIndex] = useState();
 
   const handleListItemClick = (event, index) => {
-    const anchor = document.querySelector(".grid");
-    if ( anchor) {
-      event.persist();
-     anchor.scrollTo(0,0);
      setSelectedIndex(index);
-    } else {
-     setSelectedIndex(index);
-    }
   };
 
-  // return the right category selected on reload page based on url
+  // return category selected on reload page based on url
   useEffect(() => {
     let path = location.pathname;
-    if (path === "/" && selectedIndex !== 0) setSelectedIndex(0);
-    else if (path === "/products/lipstick" && selectedIndex !== 1) setSelectedIndex(1);
-    else if (path === "/products/blush" && selectedIndex !== 2) setSelectedIndex(2);
-    else if (path === "/products/eyeliner" && selectedIndex !== 3) setSelectedIndex(3);
-    else if (path === "/products/mascara" && selectedIndex !== 4) setSelectedIndex(4);
+    path === "/" && setSelectedIndex(0);
+    path === "/products/lipstick" && setSelectedIndex(1);
+    path === "/products/blush" && setSelectedIndex(2);
+    path === "/products/eyeliner" && setSelectedIndex(3);
+    path === "/products/mascara" && setSelectedIndex(4);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // not need depencies because it needed to run only once on reload page
 
@@ -106,16 +98,16 @@ const  DrawerList = ({anchor, closeDrawerCallback}) => {
       onClick={closeDrawerCallback}
       onKeyDown={closeDrawerCallback}
     >
+    {/* hidden toolbar when breakpoint reach 960px*/}
+      <Hidden smDown >
+        <Toolbar className={classes.listToolbar}/>
+      </Hidden>
+      <Divider />
+      <Typography variant="h6" component="h2" className={classes.listHeader}>
+        categories
+      </Typography>
+      <Divider />
       <List disablePadding className={classes.root} component="nav" aria-label="main categories filters">
-        {/* hidden toolbar when breakpoint reach 960px*/}
-        <Hidden smDown >
-          <Toolbar className={classes.listToolbar}/>
-        </Hidden>
-        <Divider />
-        <Typography variant="h6" component="h2" className={classes.listHeader}>
-          categories
-        </Typography>
-        <Divider />
           <ListItem
            className={classes.listItem}
            button

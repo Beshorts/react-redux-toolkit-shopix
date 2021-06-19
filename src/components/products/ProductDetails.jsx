@@ -25,28 +25,20 @@ import { useAddRemoveCartItem, useAddRemoveFavorite } from '../elements/customHo
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.texts.main,
-    marginBottom: theme.spacing(5),
-      minHeight: "100vh",
+    minHeight: "100vh",
+    backgroundColor: "#FFFF",
+    color: theme.palette.primary.main,
     [theme.breakpoints.up('md')]: {
-     maxWidth: 767,
-     marginLeft: 'calc(40% - 180px)',
+     maxWidth: 667,
     },
     [theme.breakpoints.up('lg')]: {
      maxWidth: 1086,
-     marginLeft: 'calc(40% - 302px)',
-    },
-    [theme.breakpoints.up('xl')]: {
-     maxWidth: 1600,
-     marginLeft: 'calc(40% - 500px)',
     },
   },
   imageBg: {
-    backgroundColor: "#FFF",
     display: "grid",
     marginTop: theme.spacing(11.25),
     paddingTop: theme.spacing(3.75),
-    paddingBottom: theme.spacing(3.75),
   },
   imageProduct: {
     margin: theme.spacing(0,'auto'),
@@ -57,8 +49,7 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-flex",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+    padding: theme.spacing(2, 0, 2, 0),
   },
   brandName: {
     fontWeight: 700,
@@ -78,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.6,
   },
   price: {
-    color: theme.palette.pricingColor.main,
+    color: theme.palette.deepPrimary.main,
     fontSize: "1rem",
     fontWeight: 700,
   },
@@ -99,8 +90,8 @@ const ProductDetails = () => {
   const {image_link, brand, id, name, product_type, description, price_sign, price} = singleProduct;
 
   //destructure custom hook
-  const { cartItem, cart } = useAddRemoveCartItem(id);
-  const { favoriteItem, favorite } = useAddRemoveFavorite(id);
+  const { getCurrentCartItem, cart } = useAddRemoveCartItem(id);
+  const { getCurrentFavoriteItem, favorite } = useAddRemoveFavorite(id);
 
   const handleCartButton = () =>  {
     cart(singleProduct)
@@ -122,7 +113,7 @@ const ProductDetails = () => {
           </Typography>
           <FavoriteButton
             className={classes.favoriteIcon}
-            isFavorited={favoriteItem}
+            isFavorited={getCurrentFavoriteItem}
             onClick={handleFavoriteButton}
           />
         </Box>
@@ -140,7 +131,7 @@ const ProductDetails = () => {
             {price_sign}{price}
           </Typography>
           <CartButton
-            added={cartItem}
+            added={getCurrentCartItem}
             onClick={handleCartButton}
           />
         </Box>

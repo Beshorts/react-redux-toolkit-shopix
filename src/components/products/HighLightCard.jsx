@@ -24,9 +24,8 @@ const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: theme.spacing(1.75),
-    borderRadius: 8,
-    color: theme.palette.texts.main,
+    margin: theme.spacing(0, 1.75, 0, 1.75),
+    color: theme.palette.primary.main,
   },
   cardActionArea: {
    width: "100%",
@@ -38,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHeader: {
    padding: theme.spacing(1.25, 2, 0, 2),
+    "& .MuiIconButton-root": {
+    background: "transparent",
+   },
   },
   cardContent: {
    padding: theme.spacing(2, 2, 0 ,2),
@@ -54,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
    textAlign: "center",
   },
   priceProduct: {
-   color: theme.palette.pricingColor.main,
+   color: theme.palette.deepPrimary.main,
    fontSize: "0.9rem",
    fontWeight: 500,
   },
@@ -62,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 const HighLightCard = ({ columnIndex, rowIndex, style, data }) => {
   const classes = useStyles();
+console.log("highlightCard")
 
   // destructure data
   const { value, columnCount } = data;
@@ -77,7 +80,7 @@ const HighLightCard = ({ columnIndex, rowIndex, style, data }) => {
   const checkId = highLightCard ? highLightCard.id : null;
 
   // destructure custom hook
-  const { favoriteItem, favorite } = useAddRemoveFavorite(checkId);
+  const { getCurrentFavoriteItem, favorite } = useAddRemoveFavorite(checkId);
 
   // destructure obbject
   const {id, image_link, name, price_sign, price} = highLightCard;
@@ -107,7 +110,7 @@ const HighLightCard = ({ columnIndex, rowIndex, style, data }) => {
               action={
                 <FavoriteButton
                   className={classes.favoriteIcon}
-                  isFavorited={favoriteItem}
+                  isFavorited={getCurrentFavoriteItem}
                   onClick={handleFavoriteButton}
                 />
               }

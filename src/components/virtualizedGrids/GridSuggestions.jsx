@@ -15,12 +15,13 @@ import { useOneRowGrid } from '../elements/customHooks';
 
 
 const GridSuggestions = ({ children, width }) => {
+console.log("GridSuggestions")
 
   // state of products filtered by category
   const highlighted = useSelector(productsSuggested);
 
   //passing height and state parameters
-  const { cellWidth, cellHeight, columnCount, rowCount, itemData } = useOneRowGrid(220, highlighted);
+  const { cellWidth, cellHeight, columnCount, rowCount, itemData } = useOneRowGrid(210, highlighted);
 
   const gridStyle = {
    position: "sticky",
@@ -38,6 +39,7 @@ const GridSuggestions = ({ children, width }) => {
       />
       <Grid
         className="grid"
+        direction="ltr"
         style={gridStyle}
         width={width}
         height={cellHeight}

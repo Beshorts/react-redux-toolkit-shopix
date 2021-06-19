@@ -17,23 +17,22 @@ const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: theme.spacing(2),
-    borderRadius: 8,
+    margin: theme.spacing(0, 1.75, 0, 1.75),
     color: theme.palette.primary.main,
+    borderRadius: 0,
   },
   cardActionArea: {
    width: "100%",
   },
   media: {
-    margin: theme.spacing(0, 'auto'),
-    width: 98,
-    paddingTop: theme.spacing(1.25),
-    paddingBottom: theme.spacing(1.25),
-    backgroundSize: "cover",
-    transition: "all .2s ease-in-out",
-    "&:hover": {
-      transform: "scale(1.08)",
-    },
+   margin: theme.spacing(0, 'auto'),
+   width: 98,
+   padding: theme.spacing(1.25, 0, 1.25, 0),
+   backgroundSize: "cover",
+   transition: "all .2s ease-in-out",
+   "&:hover": {
+    transform: "scale(1.08)",
+   },
   },
   bestPricesCardContent: {
    textAlign: "center",
@@ -53,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 
 const BestPricesCard = ({ columnIndex, rowIndex, style, data }) => {
   const classes = useStyles();
-
+console.log("bestpricescard")
   // destructure data
   const { value, columnCount } = data;
 

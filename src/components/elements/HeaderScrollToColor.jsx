@@ -17,7 +17,7 @@ const ScrollHandler = props => {
   return React.cloneElement(props.children, {
 
     style: {
-      backgroundColor: trigger ? "#F5F5F5" : "transparent",
+      backgroundColor: trigger ? "#67B99A" : "transparent",
       elevation: trigger ? 0 : 0,
       boxShadow: trigger ? "0 3px 5px 2px rgba(0, 0, 0, .2)" : "none",
       transition: trigger ? "0.3s" : "0.5s",

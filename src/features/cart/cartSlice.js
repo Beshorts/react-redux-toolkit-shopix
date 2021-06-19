@@ -9,12 +9,12 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const { id, price } = action.payload;
+      const { id, quantity, price } = action.payload;
       // check if id is already in state
       const product = state.cartItems.findIndex(elem => elem.id === id);
       if (product === -1) {
         // add new item to the state
-        state.cartItems.push({ id, quantity: + 1, price: price });
+        state.cartItems.push({ id, quantity: quantity, price: price });
       }
     },
     incrementQuantity: (state, action) => {
