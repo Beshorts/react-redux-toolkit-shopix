@@ -16,7 +16,7 @@ const StyledBreadcrumb = withStyles((theme) => ({
     fontWeight: 500,
     '&:hover, &:focus': {
       backgroundColor: theme.palette.primary.main,
-      cursor: "pointer"
+      cursor: "pointer",
     },
   },
 }))(Chip);

@@ -2,9 +2,7 @@ import React, {lazy} from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-// Mui components
-import Hidden from '@material-ui/core/Hidden';
-
+// import components
 import ChipNavigation from './ChipNavigation';
 import CategoriesMenuListPopover from './CategoriesMenuListPopover';
 
@@ -38,33 +36,31 @@ const NavSelections = () => {
 
 
   return (
-    <Hidden smDown>
-      <div className={classes.root}>
-        <Breadcrumbs separator=">" aria-label="breadcrumb" role="navigation">
-          <ChipNavigation
-            color="secondary"
-            component="a"
-            href="/"
-            icon={<HomeIcon fontSize="small" />}
-            label="Home"
-            onClose={handleClose}
-          />
-          <ChipNavigation  label="Products" href="#" />
-          <ChipNavigation
-            color="secondary"
-            label="Categories"
-            //Override the default delete icon element. Shown only if onDelete is set
-            deleteIcon={<ExpandMoreIcon />}
-            onClick={handleClick}
-            onDelete={handleClick}
-          />
-          <CategoriesMenuListPopover
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            open={Boolean(anchorEl)} />
-        </Breadcrumbs>
-      </div>
-    </Hidden>
+    <div className={classes.root}>
+      <Breadcrumbs separator=">" aria-label="breadcrumb" role="navigation">
+        <ChipNavigation
+          color="secondary"
+          component="a"
+          href="/"
+          icon={<HomeIcon fontSize="small" />}
+          label="Home"
+          onClose={handleClose}
+        />
+        <ChipNavigation  label="Products" href="#" />
+        <ChipNavigation
+          color="secondary"
+          label="Categories"
+          //Override the default delete icon element. Shown only if onDelete is set
+          deleteIcon={<ExpandMoreIcon />}
+          onClick={handleClick}
+          onDelete={handleClick}
+        />
+        <CategoriesMenuListPopover
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          open={Boolean(anchorEl)} />
+      </Breadcrumbs>
+    </div>
   );
 }
 

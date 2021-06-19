@@ -14,6 +14,7 @@ import { getFilterBy } from '../../features/filters/filtersSlice';
 import { productsSelected } from '../../selectors/filters';
 
 import { makeStyles } from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 
 // Mui components
 import Container from '@material-ui/core/Container';
@@ -78,9 +79,11 @@ const ProductsPage = () => {
 
   return(
     <Container className={classes.autoSizerContainer} >
-    <Suspense fallback={<div/>}>
-      <NavSelections />
-    </Suspense>
+      <Suspense fallback={<div/>}>
+        <Hidden smDown>
+          <NavSelections />
+        </Hidden>
+      </Suspense>
       { isProductsLoaded
         ? <AutoSizerGrids />
         : error
