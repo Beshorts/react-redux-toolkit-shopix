@@ -22,6 +22,7 @@ const IconButton = lazy(() => import('@material-ui/core/IconButton'));
 const Typography = lazy(() => import('@material-ui/core/Typography'));
 const ShoppingCartIcon = lazy(() => import('@material-ui/icons/ShoppingCart'));
 const HeaderSwitchNavigation = lazy(() => import('./HeaderSwitchNavigation'));
+const Hidden = lazy(() => import('@material-ui/core/Hidden'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
@@ -30,19 +31,26 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
   },
   toolbarHeader: {
-    minHeight: theme.spacing(11.75),
+    minHeight: 80,
   },
   switchBtnBox: {
     width: 66,
   },
   title: {
     flexGrow: 1,
-    fontWeight: 700,
-    fontSize: "1.1rem",
-    },
+    fontWeight: 500,
+    fontSize: "1rem",
+   },
   cart: {
     fontSize: "1.4rem",
+    color: theme.palette.primary.main,
   },
+  badge: {
+    fontSize: "0.8rem",
+    fontWeight: 700,
+    color: "#fff",
+    backgroundColor: theme.palette.secondary.main,
+  }
 }));
 
 const Header = ({ children, mobileOpen, openDrawerCallback }) => {
@@ -68,6 +76,7 @@ const Header = ({ children, mobileOpen, openDrawerCallback }) => {
 
   return(
     <>
+    { location.pathname !== '/' &&
       <Suspense fallback={<div/>}>
         <ScrollToColor >
           <AppBar  className={classes.root} elevation={0} role="navigation">
@@ -76,16 +85,19 @@ const Header = ({ children, mobileOpen, openDrawerCallback }) => {
               <Typography variant="h6" className={classes.title} component="h1"  >
                 SHOPIX
               </Typography>
-              <IconButton aria-label="cart" onClick={handleClick}>
-                <Badge overlap="circle" color="secondary" badgeContent={fullQuantityInCart} showZero >
-                  <ShoppingCartIcon className={classes.cart} color="primary"/>
+              <IconButton className={classes.fufu} aria-label="cart" onClick={handleClick}>
+                <Badge  classes={{ badge: classes.badge }} badgeContent={fullQuantityInCart} showZero >
+                  <ShoppingCartIcon className={classes.cart} />
                 </Badge>
               </IconButton>
             </Toolbar>
           </AppBar>
         </ScrollToColor>
       </Suspense>
+      }
+      <Hidden mdUp>
         {children}
+      </Hidden>
     </>
   )
 };

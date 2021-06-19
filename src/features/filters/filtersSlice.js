@@ -9,7 +9,7 @@ import { createSlice } from '@reduxjs/toolkit';
    initialState,
    reducers: {
      getFilterBy: (state, action) => {
-      state.filterBy =  action.payload
+      state.filterBy = action.payload
      },
    },
  });

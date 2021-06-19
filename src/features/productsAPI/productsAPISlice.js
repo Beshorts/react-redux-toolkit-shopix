@@ -32,11 +32,12 @@ export const fetchProducts = createAsyncThunk(
           }
         }
       );
-      const getData = response.data;
-      getData.map(elem =>
+      const getData = response && response.data;
+      getData && getData.map(elem =>
         // avoid products with no price and description
         (elem.price !== "0.0" && elem.description !== "") && productFields.push({
           id: elem.id,
+          quantity: 1,
           brand: elem.brand,
           name: elem.name,
           // fast resize images for better performance
@@ -72,7 +73,7 @@ const productsAPISlice = createSlice({
     [fetchProducts.pending]: (state, action) => {
       state.status = 'loading'
     },
-    [fetchProducts.fulfilled]: (state, action)=> {
+    [fetchProducts.fulfilled]: (state, action) => {
       state.status = 'succeeded'
     /* pass productsAdapter as 'mutating' helper in case reducer
        it is passed as a value and createSlice will auto-generate action type / creator
@@ -99,5 +100,5 @@ export const {
   selectAll: selectAllProducts,
   // returns the element corresponding to the ID when state and ID will be passed
   selectById: selectProductById,
+  selectIds: selectByIds,
 } = productsAdapter.getSelectors((state) => state.products);
-

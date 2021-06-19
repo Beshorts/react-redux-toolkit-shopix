@@ -22,14 +22,18 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   switchBtnBox: {
-    width: 56,
+   width: 56,
   },
   menuIcon: {
-    color: "inherit",
+   color: "inherit",
+  },
+  btnGoBack: {
+    color: "#fff",
+    backgroundColor: theme.palette.primary.main,
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
     },
-    fabIcon: {
-     marginRight: theme.spacing(0.375),
-    },
+  }
 }));
 
 const HeaderSwitchNavigation = ({ openDrawerCallback }) => {
@@ -40,7 +44,7 @@ const HeaderSwitchNavigation = ({ openDrawerCallback }) => {
 
   const location = useLocation();
 
-  /* disable Menu btn when categories drawer is permanent on desktop size (mc and up)
+  /* disable Menu btn when categories drawer is permanent on size (md and up)
      useMediaQuery automatically provides useTheme() as an argument */
   const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up("md"));
 
@@ -57,7 +61,11 @@ const HeaderSwitchNavigation = ({ openDrawerCallback }) => {
     <Box className={classes.switchBtnBox}>
       { displayUi &&
         <Zoom in={true} unmountOnExit  >
-          <Fab color="primary" size="small" aria-label="go back" onClick={handleBackClick} >
+          <Fab
+           className={classes.btnGoBack}
+           size="small" aria-label="go back"
+           onClick={handleBackClick}
+          >
             <ArrowBackIcon />
           </Fab>
         </Zoom>

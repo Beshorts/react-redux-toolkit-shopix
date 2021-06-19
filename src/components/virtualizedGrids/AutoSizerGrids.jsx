@@ -8,6 +8,9 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
+// MUi utilities
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 // import components
 import GridProducts from './GridProducts';
 import GridBestPrices from './GridBestPrices';
@@ -23,12 +26,19 @@ const HighLightCard = lazy(() => import('../products/HighLightCard'));
 
 const AutoSizerGrids = () => {
 
+  const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up("md"));
+
   const autoSizerStyle = {
     display: 'flex',
     minHeight: "100vh",
     position: "sticky",
     margin: "auto",
     top: "0px",
+  };
+
+  const containerBoxStyle = {
+    width: "100%" ,
+    marginTop: isLargeScreen ? "40px" : "110px",
   };
 
   return(
@@ -39,6 +49,7 @@ const AutoSizerGrids = () => {
           <>
             <div className="anchor" id="back-to-top-anchor" />
             <Suspense fallback={<div/>}>
+            <div className="containerBox" style={containerBoxStyle}>
               <GridProducts width={width} >
                 {ProductCard}
               </GridProducts>
@@ -48,6 +59,7 @@ const AutoSizerGrids = () => {
               <GridSuggestions width={width}>
                 {HighLightCard}
               </GridSuggestions>
+              </div>
             </Suspense>
             <ScrollToTopOnPage >
               <Fab color="primary" size="small" aria-label="scroll back to top">

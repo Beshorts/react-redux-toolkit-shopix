@@ -16,8 +16,11 @@ console.log("gridProducts")
   // state of products filtered by category
   const productsFiltered = useSelector(state => state.products.productsFiltered);
 
+  // state of current category filter
+  const currentCategory = useSelector(state => state.filters.filterBy);
+
    //  pass requested parameters to fill the Grid and destructure custom hook
-  const { cellWidth, cellHeight, columnCount, rowCount, itemData } = useOneRowGrid(220, productsFiltered)
+  const { cellWidth, cellHeight, columnCount, rowCount, itemData } = useOneRowGrid(226, productsFiltered)
 
   const gridStyle = {
    position: "sticky",
@@ -26,14 +29,14 @@ console.log("gridProducts")
   return(
     <>
       <GridsHeaders
-        margin={16}
         data={productsFiltered}
         text="items"
         symbol={"💪"}
         label="muscle"
-        title={"see all"}/>
+        title={currentCategory}/>
       <Grid
         className="grid"
+        direction="ltr"
         style={gridStyle}
         width={width}
         height={cellHeight}

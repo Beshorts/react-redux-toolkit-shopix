@@ -14,23 +14,18 @@ import RemoveIcon from '@material-ui/icons/Remove';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    borderBottomRightRadius:8,
-    borderBottomLeftRadius: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 8,
-    minWidth: 0,
-    padding: theme.spacing(2),
-    "&:hover": {
-      backgroundColor: "#71A215",
-    },
+   borderRadius: theme.spacing(1, 0, 1, 0),
+   padding: theme.spacing(0.2),
+   minWidth: 25,
   },
   addBtn: {
-    color: "#FFFF",
-    fontSize: "1.1rem",
+   color: "#FFFF",
+   fontSize: "1.1rem",
   },
   removeBtn: {
-    color: "#FFFF",
-    fontSize: "1.1rem",
+   color: "#FFFF",
+   fontSize: "1.1rem",
+   backgroundColor: theme.palette.darkPurple.main,
   },
 }));
 
@@ -38,24 +33,31 @@ const useStyles = makeStyles((theme) => ({
 const CartButton = ({ added, onClick }) => {
   const classes = useStyles();
 
+const buttonStyle = {
+  backgroundColor: added ? "#94778B" : "#67B99A"
+}
   return(
-     <Button onClick={onClick}
-     variant="contained"
+     <Button
      className={classes.root}
+     onClick={onClick}
+     variant="contained"
      aria-label={ added ? "remove" : "add" }
-     style={{backgroundColor: added ? "#94778B" : "#67B99A"}}
+     style={buttonStyle}
       >
-      {added ? <RemoveIcon className={classes.removeBtn}  color="secondary"  /> : <AddIcon className={classes.addBtn}/>}
+      { added
+        ? <RemoveIcon className={classes.removeBtn}   />
+        : <AddIcon className={classes.addBtn}/>
+      }
     </Button>
 
 
   )
 };
 
-export default React.memo(CartButton);
+export default CartButton;
 
 CartButton.propTypes = {
-  added: PropTypes.any.isRequired,
+  added: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
   onClick: PropTypes.func.isRequired,
 }
 

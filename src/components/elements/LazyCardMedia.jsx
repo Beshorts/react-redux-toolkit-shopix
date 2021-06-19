@@ -25,6 +25,12 @@ const LazyCardMedia = elem => {
     }
   }, [visible, placeholderRef]);
 
+  const lazyMediaStyle = {
+    height: height,
+    backgroundColor: "#99d98c",
+    opacity: 0.4,
+  }
+
  return (
    visible ?
     <CardMedia
@@ -36,10 +42,9 @@ const LazyCardMedia = elem => {
     />
     :
     <div
-      style={{height: height, backgroundColor: "#99d98c", opacity: ".4"}}
+      style={lazyMediaStyle}
       aria-label={alt}
       ref={placeholderRef}
-     // offset={250}
     />
   );
 };

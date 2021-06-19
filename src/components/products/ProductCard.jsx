@@ -25,33 +25,36 @@ const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginRight: theme.spacing(1.75),
-    borderRadius: 8,
-    color: theme.palette.texts.main,
+    height: 134,
+    margin: theme.spacing(0, 1.75, 0, 1.75),
+  },
+  cardHeader: {
+   padding: theme.spacing(1.25, 2, 0, 2),
   },
   cardActionArea: {
    width: "100%",
   },
   media: {
     margin: theme.spacing(0, 'auto'),
+    marginBottom: theme.spacing(2),
     width: 84,
     backgroundSize: "cover",
   },
-  cardHeader: {
-   padding: theme.spacing(1.25, 2, 0, 2),
+  cardContent: {
+  padding:"16px 32px 16px 32px ",
   },
   nameProduct: {
-   textAlign: "center",
-   opacity: 0.8,
+   color: theme.palette.primary.main,
    fontSize: "0.9rem",
    fontWeight: 400,
+
   },
   cardAction: {
     justifyContent: "space-between",
-    padding:theme.spacing(0, 2, 1.5, 2),
+    padding: theme.spacing(0, 4, 0, 4),
   },
   priceProduct: {
-   color: theme.palette.pricingColor.main,
+   color: theme.palette.deepPrimary.main,
    fontSize: "0.9rem",
    fontWeight: 500,
   },
@@ -59,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
   const classes = useStyles();
-
+console.log("productCard")
   // destructure data
   const { value, columnCount } = data;
 
@@ -73,12 +76,12 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
   // destructure object
   const { id, image_link, name, price_sign, price } = productCard;
 
-  // check if card exist and retrieve its id
-  const checkId = productCard ? id : null;
+  //create variable checking if card exist and retrieve its id
+  const checkId = productCard && id ;
 
   // destructure custom hooks
-  const { cartItem, cart } = useAddRemoveCartItem(checkId);
-  const { favoriteItem, favorite } = useAddRemoveFavorite(checkId);
+  const { getCurrentCartItem, cart } = useAddRemoveCartItem(checkId);
+  const { getCurrentFavoriteItem, favorite } = useAddRemoveFavorite(checkId);
 
   const handleCartButton = () =>  {
     cart(productCard)
@@ -104,13 +107,12 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
       style={cellContainerStyle}
       >
         <Suspense fallback={<p>loading...</p>}>
-          <Card elevation={3} className={classes.root} key={id} >
+          <Card elevation={3}  className={classes.root} key={id} >
             <CardHeader
               className={classes.cardHeader}
               action={
                 <FavoriteButton
-                  className={classes.favoriteIcon}
-                  isFavorited={favoriteItem}
+                  isFavorited={getCurrentFavoriteItem}
                   onClick={handleFavoriteButton}
                 />
               }
@@ -125,22 +127,22 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
                 image={image_link}
                 height={80}
               />
-              <CardContent >
+            </CardActionArea>
+          </Card>
+              <CardContent className={classes.cardContent} >
                 <Typography className={classes.nameProduct} noWrap variant="h6" component="h1" >
                   {name}
                 </Typography>
               </CardContent>
-            </CardActionArea>
             <CardActions className={classes.cardAction}  >
               <Typography className={classes.priceProduct}  variant="h6" component="h2">
                  {price_sign}{price}
               </Typography>
               <CartButton
-                 added={cartItem}
+                 added={getCurrentCartItem}
                  onClick={handleCartButton}
               />
             </CardActions>
-          </Card>
         </Suspense>
      </div>
      )
