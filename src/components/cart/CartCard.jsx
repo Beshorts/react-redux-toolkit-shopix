@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    color: theme.palette.texts.main,
+    color: theme.palette.primary.main,
     display: "flex",
     flexDirection: "column",
     padding: theme.spacing(2, 2, 0, 2),
@@ -88,11 +88,11 @@ const useStyles = makeStyles((theme) => ({
   },
   btnDetailslabel: {
     justifyContent: "flex-start",
-    color: "#6e5867",
+    color: theme.palette.darkPurple.main,
     fontSize: "0.8rem",
     fontWeight: 500,
     "&:hover": {
-     color: "grey",
+     color: theme.palette.primary.main,
     },
   },
 }));
@@ -133,7 +133,6 @@ const CartCard = ({ product }) => {
                          root: classes.btnDetails,
                          label: classes.btnDetailslabel
                       }}
-                      color="primary"
                       component={Link} to={`/product/${id}`}
                       key={id}
                     >

@@ -10,12 +10,12 @@ import {
 import Spinner from './components/elements/spinner/Spinner';
 
 // import lazy components
+const NotFoundPage = lazy(() => import('./components/elements/NotFoundPage'));
 const ProductsPage = lazy(() => import('./components/products/ProductsPage'));
 const ProductDetails = lazy(() => import('./components/products/ProductDetails'));
 const CartGrid = lazy(() => import('./components/cart/CartGrid'));
 const HeaderLayout = lazy(() => import('./components/header/HeaderLayout'));
 const HomePage = lazy(() => import('./components/homePage/HomePage'));
-const NotFoundPage = lazy(() => import('./components/elements/NotFoundPage'));
 
 const App = () => {
 

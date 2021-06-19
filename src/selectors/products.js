@@ -4,7 +4,7 @@ import { selectAllProducts } from '../features/productsAPI/productsAPISlice';
 
 import { productsSelected } from './filters';
 
-// create memoized state to fill grids data
+// create  memoized state to fill grids data
 
 /***** get products from products filtered state where price is up to 7 ******/
 export const productsBestPrices = createSelector(

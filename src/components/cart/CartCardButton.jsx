@@ -16,52 +16,49 @@ import { useQuantityCounter } from '../elements/customHooks';
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
-    root: {
-     display: "flex",
-     padding: theme.spacing(0, 2, 2, 2),
-     [theme.breakpoints.up('xs')]: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      paddingTop: theme.spacing(0),
-    },
-    [theme.breakpoints.up('sm')]: {
-      flexDirection: "column",
-      justifyContent: "space-between",
-      alignItems: "flex-end",
-      padding: theme.spacing(2, 2.75, 2, 2),
-    },
+  root: {
+   display: "flex",
+   padding: theme.spacing(0, 2, 2, 2),
+   [theme.breakpoints.up('xs')]: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingTop: theme.spacing(0),
+   },
+   [theme.breakpoints.up('sm')]: {
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    padding: theme.spacing(2, 2.75, 2, 2),
+   },
   },
   productPrice: {
-    color: theme.palette.pricingColor.main,
+    color: theme.palette.deepPrimary.main,
     fontSize: "0.9rem",
     fontWeight: 500,
   },
   btnActions: {
     padding: theme.spacing(0),
   },
-    btnRoot: {
-    borderBottomRightRadius: 8,
-    borderBottomLeftRadius: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 8,
+  btnRoot: {
+    borderRadius: theme.spacing(1, 0, 1, 0),
     minWidth: 0,
     padding: theme.spacing(0.25),
-      backgroundColor: "#ff6000",
+    backgroundColor: theme.palette.secondary.main,
     "&:hover": {
-    backgroundColor: "#94778B",
+    backgroundColor: theme.palette.darkPurple.main,
     },
   },
   addBtn: {
-    color: "#FFFF",
-    fontSize: "1.1rem",
+   color: "#FFFF",
+   fontSize: "1.1rem",
   },
   quantityText: {
-    minWidth: 0,
+   minWidth: 0,
   },
   removeBtn: {
-    color: "#FFFF",
-    fontSize: "1.1rem",
+   color: "#FFFF",
+   fontSize: "1.1rem",
   },
 }));
 

@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, lazy } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 
 import { useParams } from "react-router-dom";
 
@@ -17,28 +17,29 @@ import { makeStyles } from '@material-ui/core/styles';
 
 // Mui components
 import Container from '@material-ui/core/Container';
+
+// import  component
+import AutoSizerGrids from '../virtualizedGrids/AutoSizerGrids';
+
 // import elements
 import Error from '../elements/errors/Error';
 import SkeletonCardGrid from '../elements/SkeletonCardGrid';
 
-// import lazy component
-const AutoSizerGrids = lazy(() => import('../virtualizedGrids/AutoSizerGrids'));
+// import component as lazy
+const NavSelections = lazy(() => import('../navigationUpBreakpoint/NavSelections'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
-  root: {
-    minHeight: "100vh",
-    [theme.breakpoints.up('md')]: {
+  autoSizerContainer: {
+    height: "100vh",
+      [theme.breakpoints.up('md')]: {
      maxWidth: 769,
-     marginLeft: 'calc(40% - 180px)',
-    },
+       },
     [theme.breakpoints.up('lg')]: {
      maxWidth: 1092,
-     marginLeft: 'calc(40% - 302px)',
     },
     [theme.breakpoints.up('xl')]: {
      maxWidth: 1600,
-     marginLeft: 'calc(40% - 500px)',
     },
   },
 }));
@@ -76,11 +77,12 @@ const ProductsPage = () => {
   },[dispatch, filteredByCategory]);
 
   return(
-    <Container className={classes.root} >
+    <Container className={classes.autoSizerContainer} >
+    <Suspense fallback={<div/>}>
+      <NavSelections />
+    </Suspense>
       { isProductsLoaded
-        ? <Suspense fallback={<div/>} >
-            <AutoSizerGrids />
-          </Suspense>
+        ? <AutoSizerGrids />
         : error
         ? <Error />
         : <SkeletonCardGrid/>

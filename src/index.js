@@ -11,7 +11,7 @@ import {store, persistor} from './app/store';
 import {fetchProducts} from './features/productsAPI/productsAPISlice';
 
 // MUI setup for custom theme
-import { ThemeProvider, createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 // import component
@@ -30,35 +30,45 @@ let theme = createMuiTheme({
   },
    palette: {
     background: {
-      default: "#F5F5F5",
+     default: "#fff",
     },
-    // cartIcon + BackIcon
+    // texts, icons, BackIcon
     primary: {
-      main: "#036666",
+      main: "#19392B",
       contrastText: '#fff',
     },
-    // cartBadge
+    // logo homepage, cartBadge, btn add/remove increment/decrement bg
     secondary: {
-       main: "#ff6000",
-       contrastText: '#fff',
+     main: "#ff6000",
+     dark: "#b24300",
+     contrastText: "#fff",
     },
     // btn FavoriteIcon onClick
     error: {
       main: "#ff5e78",
     },
-     // all texts
-    texts: {
-       main: "#19392B",
+    greenLeading: {
+      main: "#67b99a"
+    },
+    greenChip: {
+      main: "#587e70",
+    },
+    // btn cart and products on select/hover
+    darkPurple: {
+      main: "#94778B",
+    },
+    // grid headers subtitle
+    grey: {
+      main: "#6d706d",
     },
     // color pricing
-    pricingColor: {
-       main: "#02271B",
+    deepPrimary: {
+     main: "#02271B",
     },
+    contrastThreshold: 3,
+    tonalOffset: 0.4,
   },
 });
-
-// keep typography responsive cross devices
-theme = responsiveFontSizes(theme);
 
 // dispatch thunk when App first mounts
 store.dispatch(fetchProducts());

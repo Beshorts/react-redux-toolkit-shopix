@@ -9,6 +9,6 @@ export const productsSelected = createSelector(
  selectAllProducts,
  filterSelector,
   (entities, filterBy) => entities.filter(elem =>
-    elem.product_type === filterBy)
+    elem.product_type === filterBy
+  )
 );
-

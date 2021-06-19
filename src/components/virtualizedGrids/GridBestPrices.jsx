@@ -15,7 +15,7 @@ import { useOneRowGrid } from '../elements/customHooks';
 
 
 const GridBestPrices = ({ children, width }) => {
-
+console.log("gridbestprices")
   // import state
   const bestPrices = useSelector(productsBestPrices);
 
@@ -28,7 +28,7 @@ const GridBestPrices = ({ children, width }) => {
   return(
     <>
       <GridsHeaders
-        margin={4}
+        margin={2}
         data={bestPrices}
         text="items"
         symbol={"🔥"}
@@ -36,6 +36,7 @@ const GridBestPrices = ({ children, width }) => {
         title={"hot prices"}/>
       <Grid
         className="grid"
+        direction="ltr"
         width={width}
         style={gridStyle}
         height={cellHeight}

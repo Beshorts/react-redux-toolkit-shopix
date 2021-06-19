@@ -14,7 +14,8 @@ import Emoji from '../elements/Emoji';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: theme.spacing(0.75),
+    marginBottom: theme.spacing(1.2),
+    padding: theme.spacing(1, 0, 0, 2),
     width: 300,
     display: "flex",
     flexDirection: "row",
@@ -22,14 +23,13 @@ const useStyles = makeStyles((theme) => ({
   },
   gridHeaderText: {
     marginRight: theme.spacing(0.75),
-    color: theme.palette.texts.main,
+    color: theme.palette.primary.main,
     fontSize: "0.9rem"
-,    fontWeight: 500,
+,   fontWeight: 500,
   },
     gridHeaderSubtitle: {
-    marginLeft: theme.spacing(0.25),
-    marginTop: theme.spacing(0.375),
-    color: "#6d706d",
+    margin: theme.spacing(0.375, 0, 0, 0.25),
+    color: theme.palette.grey.main,
     fontSize: "0.75rem",
     fontWeight: 700,
   },
@@ -63,5 +63,5 @@ GridsHeaders.propTypes = {
   title: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  margin: PropTypes.number.isRequired,
+  margin: PropTypes.number,
 }
