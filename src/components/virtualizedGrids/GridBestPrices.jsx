@@ -15,7 +15,7 @@ import { useOneRowGrid } from '../elements/customHooks';
 
 
 const GridBestPrices = ({ children, width }) => {
-console.log("gridbestprices")
+
   // import state
   const bestPrices = useSelector(productsBestPrices);
 

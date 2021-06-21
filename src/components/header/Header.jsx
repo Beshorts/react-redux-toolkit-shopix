@@ -21,8 +21,10 @@ const Badge = lazy(() => import('@material-ui/core/Badge'));
 const IconButton = lazy(() => import('@material-ui/core/IconButton'));
 const Typography = lazy(() => import('@material-ui/core/Typography'));
 const ShoppingCartIcon = lazy(() => import('@material-ui/icons/ShoppingCart'));
-const HeaderSwitchNavigation = lazy(() => import('./HeaderSwitchNavigation'));
 const Hidden = lazy(() => import('@material-ui/core/Hidden'));
+
+// import lazy component
+const HeaderSwitchNavigation = lazy(() => import('./HeaderSwitchNavigation'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({

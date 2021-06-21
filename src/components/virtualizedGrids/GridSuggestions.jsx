@@ -15,7 +15,6 @@ import { useOneRowGrid } from '../elements/customHooks';
 
 
 const GridSuggestions = ({ children, width }) => {
-console.log("GridSuggestions")
 
   // state of products filtered by category
   const highlighted = useSelector(productsSuggested);

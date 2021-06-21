@@ -1,33 +1,35 @@
-import React, {Suspense, lazy} from 'react';
+import React  from 'react';
 
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
 // Mui components
-const Chip = lazy(() => import('@material-ui/core/Chip'));
+import Chip from '@material-ui/core/Chip';
 
 // breadCrumb custom style as chip
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
-    color: "#fff",
     backgroundColor: theme.palette.greenChip.main,
     height: theme.spacing(3.625),
+    color: "white",
     fontWeight: 500,
+    cursor: "pointer",
     '&:hover, &:focus': {
       backgroundColor: theme.palette.primary.main,
-      cursor: "pointer",
+    },
+    '&:active': {
+      backgroundColor: theme.palette.primary.main,
     },
   },
 }))(Chip);
 
-const ChipNavigation = ({color, href, component, icon, label, deleteIcon, onClick, onDelete}) => {
+const ChipNavigation = ({disabled, href, component, icon, label, deleteIcon, onClick, onDelete}) => {
 
   return (
-    <Suspense fallback={<div/>}>
       <StyledBreadcrumb
-        color={color}
         component={component}
+        disabled={ disabled ? disabled : null }
         href={href}
         icon={icon}
         deleteIcon={deleteIcon}
@@ -35,14 +37,13 @@ const ChipNavigation = ({color, href, component, icon, label, deleteIcon, onClic
         onClick={onClick}
         onDelete={onDelete}
       />
-    </Suspense>
   );
 }
 
 export default ChipNavigation;
 
 ChipNavigation.propTypes = {
-  color: PropTypes.string,
+  disabled: PropTypes.bool,
   href: PropTypes.string,
   component: PropTypes.string,
   label: PropTypes.string.isRequired,

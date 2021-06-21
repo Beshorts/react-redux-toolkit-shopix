@@ -40,7 +40,6 @@ export  const useAddRemoveCartItem = (value) => {
   // initialize hooks state to manage UI logic
   const [cartItem, setCartItem] = useState(getCurrentCartItem || false);
 
-console.log(typeof getCurrentCartItem)
   const cart = item => {
     setCartItem(cartItem)
     if (getCurrentCartItem) {

@@ -20,7 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import CartButton from '../elements/CartButton';
 import FavoriteButton from '../elements/FavoriteButton';
 import { useAddRemoveCartItem, useAddRemoveFavorite } from '../elements/customHooks';
-
+import LazyCardMedia from '../elements/LazyCardMedia';
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: theme.spacing(2, 0, 2, 0),
+    marginBottom: theme.spacing(4),
   },
   brandName: {
     fontWeight: 700,
@@ -103,9 +104,13 @@ const ProductDetails = () => {
 
   return(
     <Container className={classes.root} >
-      <React.Fragment>
         <Box  className={classes.imageBg}>
-          <img className={classes.imageProduct} src={image_link} alt="beautiful product"/>
+          <LazyCardMedia
+            className={classes.imageProduct}
+            alt="beautiful make-up product"
+            image={image_link}
+            height={162}
+          />
         </Box>
         <Box  className={classes.textAndIcon}>
           <Typography  className={classes.brandName} variant="h4" component="h2">
@@ -135,7 +140,6 @@ const ProductDetails = () => {
             onClick={handleCartButton}
           />
         </Box>
-      </React.Fragment>
     </Container>
   )
 }

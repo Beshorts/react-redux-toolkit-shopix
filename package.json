@@ -2,6 +2,7 @@
   "name": "react-redux-toolkit-shopix",
   "version": "0.1.0",
   "private": true,
+  "config-overrides-path": "node_modules/react-app-rewired/config-overrides.js",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -19,11 +20,14 @@
     "react-scripts": "4.0.3",
     "react-virtualized-auto-sizer": "^1.0.5",
     "react-window": "^1.8.6",
+    "babel-plugin-import": "^1.13.3",
+    "customize-cra": "^1.0.0",
+    "react-app-rewired": "^2.1.8",
     "redux-persist": "^6.0.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

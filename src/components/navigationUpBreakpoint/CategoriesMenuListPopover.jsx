@@ -63,56 +63,56 @@ const CategoriesMenuListPopover = ({anchorEl,open, onClose}) => {
      setSelectedIndex(index);
   };
 
-  return (
-          <StyledMenu
-            id="customized-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={open}
-            onClose={onClose}
-          >
-            <MenuItem
-              selected={selectedIndex === 0}
-              component={Link} to='/products/lipstick'
-              onClick={(event) => handleListItemClick(event, 0)}
-            >
-              <ListItemIcon >
-                <Lipstick />
-              </ListItemIcon>
-              <ListItemText disableTypography primary="lipstick"  />
-            </MenuItem>
-            <MenuItem
-              selected={selectedIndex === 1}
-              component={Link} to='/products/blush'
-              onClick={(event) => handleListItemClick(event, 1)}
-            >
-              <ListItemIcon  >
-                <Blush />
-              </ListItemIcon>
-              <ListItemText disableTypography primary="blush"  />
-            </MenuItem>
-            <MenuItem
-              selected={selectedIndex === 2}
-              component={Link} to='/products/eyeliner'
-              onClick={(event) => handleListItemClick(event, 2)}
-            >
-              <ListItemIcon >
-                <Eyeliner />
-              </ListItemIcon>
-              <ListItemText disableTypography primary="eyeliner"  />
-            </MenuItem>
-            <MenuItem
-              selected={selectedIndex === 3}
-              component={Link} to='/products/mascara'
-              onClick={(event) => handleListItemClick(event,3)}
-            >
-              <ListItemIcon >
-                <Mascara />
-              </ListItemIcon>
-              <ListItemText disableTypography primary="mascara"  />
-            </MenuItem>
-          </StyledMenu>
-        );
+  return(
+    <StyledMenu
+      anchorEl={anchorEl}
+      keepMounted
+      open={open}
+      onClick={onClose}
+      onKeyDown={onClose}
+    >
+      <MenuItem
+        selected={selectedIndex === 0}
+        component={Link} to='/products/lipstick'
+        onClick={(event) => handleListItemClick(event, 0)}
+      >
+        <ListItemIcon >
+          <Lipstick />
+        </ListItemIcon>
+        <ListItemText disableTypography primary="lipstick"  />
+      </MenuItem>
+      <MenuItem
+        selected={selectedIndex === 1}
+        component={Link} to='/products/blush'
+        onClick={(event) => handleListItemClick(event, 1)}
+      >
+        <ListItemIcon  >
+          <Blush />
+        </ListItemIcon>
+        <ListItemText disableTypography primary="blush"  />
+      </MenuItem>
+      <MenuItem
+        selected={selectedIndex === 2}
+        component={Link} to='/products/eyeliner'
+        onClick={(event) => handleListItemClick(event, 2)}
+      >
+        <ListItemIcon >
+          <Eyeliner />
+        </ListItemIcon>
+        <ListItemText disableTypography primary="eyeliner"  />
+      </MenuItem>
+      <MenuItem
+        selected={selectedIndex === 3}
+        component={Link} to='/products/mascara'
+        onClick={(event) => handleListItemClick(event,3)}
+      >
+        <ListItemIcon >
+          <Mascara />
+        </ListItemIcon>
+        <ListItemText disableTypography primary="mascara"  />
+      </MenuItem>
+    </StyledMenu>
+  );
 }
 
 export default CategoriesMenuListPopover;
