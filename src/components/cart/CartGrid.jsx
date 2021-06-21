@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 
 import { useSelector} from 'react-redux';
 
@@ -20,8 +20,6 @@ import Container from '@material-ui/core/Container';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 
-// import components
-import CartCard from './CartCard';
 
 //import MUI transitions
 import Grow from '@material-ui/core/Grow';
@@ -29,6 +27,8 @@ import Grow from '@material-ui/core/Grow';
 //import elements
 import ScrollToTopOnPage from '../elements/ScrollToTopOnPage';
 
+// import lazy components
+const CartCard = lazy(() => import('./CartCard'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
@@ -103,7 +103,9 @@ const CartGrid = () => {
       <Grid container >
         {products.map(product => (
           <Grid  item xs={12} sm={12} md={12} lg={12} xl={12} key={product.id} >
+          <Suspense fallback={<div/>}>
             <CartCard product={product} key={product.id} />
+            </Suspense>
           </Grid>
         ))}
       </Grid>

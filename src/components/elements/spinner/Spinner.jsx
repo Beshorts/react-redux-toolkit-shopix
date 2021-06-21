@@ -19,24 +19,25 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:"center",
     alignItems:"center",
     minHeight:"100vh",
+    margin: "auto",
+    textAlign: "center",
     [theme.breakpoints.up('lg')]: {
      maxWidth: 1000,
-     marginLeft: 'calc(40% - 270px)',
+     marginLeft: 'calc(40% - 350px)',
     },
    }
 }));
 
-const Spinner = (props) => {
+const Spinner = () => {
 
   const classes = useStyles();
 
-  const { color, size } = props;
 
   return (
     <Container className={classes.root} >
-      <div className="spinner" style={{ background: color, width: size, height: size }} />
-      <Typography variant="h6" component="h1" >
-        Loading...
+     <div className="spinner"></div>
+      <Typography variant="subtitle1" component="h1" >
+        loading...
       </Typography>
     </Container>
   )
@@ -44,14 +45,4 @@ const Spinner = (props) => {
 
 export default Spinner;
 
-Spinner.propTypes = {
-  /** hex color  */
-  color: PropTypes.string,
-  /** size in pixel */
-  size: PropTypes.number,
-}
 
-Spinner.defaultProps = {
-  color: '#4056F4',
-  size: 64,
-}

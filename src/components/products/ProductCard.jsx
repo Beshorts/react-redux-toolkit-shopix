@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+// import Mui component
+import Skeleton from '@material-ui/lab/Skeleton';
+
 // import elements
 import { useAddRemoveCartItem, useAddRemoveFavorite } from '../elements/customHooks';
 
@@ -35,13 +38,11 @@ const useStyles = makeStyles((theme) => ({
    width: "100%",
   },
   media: {
-    margin: theme.spacing(0, 'auto'),
-    marginBottom: theme.spacing(2),
+    margin: "auto",
     width: 84,
-    backgroundSize: "cover",
   },
   cardContent: {
-  padding:"16px 32px 16px 32px ",
+    padding: theme.spacing(2, 4, 2, 4)
   },
   nameProduct: {
    color: theme.palette.primary.main,
@@ -61,8 +62,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
+
   const classes = useStyles();
-console.log("productCard")
   // destructure data
   const { value, columnCount } = data;
 
@@ -106,7 +107,7 @@ console.log("productCard")
       id={id}
       style={cellContainerStyle}
       >
-        <Suspense fallback={<p>loading...</p>}>
+        <Suspense fallback={<Skeleton variant="rect" height={225} width={180} />}>
           <Card elevation={3}  className={classes.root} key={id} >
             <CardHeader
               className={classes.cardHeader}
