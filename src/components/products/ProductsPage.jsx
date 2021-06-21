@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect } from 'react';
 
 import { useParams } from "react-router-dom";
 
@@ -14,7 +14,6 @@ import { getFilterBy } from '../../features/filters/filtersSlice';
 import { productsSelected } from '../../selectors/filters';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Hidden from '@material-ui/core/Hidden';
 
 // Mui components
 import Container from '@material-ui/core/Container';
@@ -27,21 +26,21 @@ import Error from '../elements/errors/Error';
 import SkeletonCardGrid from '../elements/SkeletonCardGrid';
 
 // import component as lazy
-const NavSelections = lazy(() => import('../navigationUpBreakpoint/NavSelections'));
+import NavSelections  from '../navigationUpBreakpoint/NavSelections';
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   autoSizerContainer: {
-    height: "100vh",
-      [theme.breakpoints.up('md')]: {
+   height: "100vh",
+   [theme.breakpoints.up('md')]: {
      maxWidth: 769,
-       },
-    [theme.breakpoints.up('lg')]: {
-     maxWidth: 1092,
-    },
-    [theme.breakpoints.up('xl')]: {
+   },
+   [theme.breakpoints.up('lg')]: {
+    maxWidth: 1092,
+   },
+   [theme.breakpoints.up('xl')]: {
      maxWidth: 1600,
-    },
+   },
   },
 }));
 
@@ -79,11 +78,7 @@ const ProductsPage = () => {
 
   return(
     <Container className={classes.autoSizerContainer} >
-      <Suspense fallback={<div/>}>
-        <Hidden smDown>
-          <NavSelections />
-        </Hidden>
-      </Suspense>
+      <NavSelections />
       { isProductsLoaded
         ? <AutoSizerGrids />
         : error

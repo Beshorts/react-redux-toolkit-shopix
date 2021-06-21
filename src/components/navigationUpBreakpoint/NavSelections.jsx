@@ -1,20 +1,26 @@
-import React, {lazy} from 'react';
+import React, {useState} from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-// import components
-import ChipNavigation from './ChipNavigation';
-import CategoriesMenuListPopover from './CategoriesMenuListPopover';
+// import MUI components
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import HomeIcon from '@material-ui/icons/Home';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Hidden from '@material-ui/core/Hidden';
 
-// Mui lazy component
-const Breadcrumbs = lazy(() => import('@material-ui/core/Breadcrumbs'));
-const ExpandMoreIcon = lazy(() => import('@material-ui/icons/ExpandMore'));
-const HomeIcon = lazy(() => import('@material-ui/icons/Home'));
+// import components
+import CategoriesMenuListPopover from './CategoriesMenuListPopover';
+import ChipNavigation from './ChipNavigation';
 
 // style component
 const useStyles = makeStyles((theme) => ({
   root: {
-   margin: theme.spacing(15, 0, 0, 2),
+   marginTop: theme.spacing(15),
+   paddingLeft: theme.spacing(2),
+  },
+  iconChip: {
+   color: "white",
+   fontSize: "1.1rem",
   },
 }));
 
@@ -22,10 +28,10 @@ const NavSelections = () => {
 
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // open menu categories
-  const handleClick = (event) => {
+  const handleMenuCategories = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -34,33 +40,33 @@ const NavSelections = () => {
     setAnchorEl(null);
   };
 
+  const open = Boolean(anchorEl);
 
   return (
-    <div className={classes.root}>
-      <Breadcrumbs separator=">" aria-label="breadcrumb" role="navigation">
-        <ChipNavigation
-          color="secondary"
-          component="a"
-          href="/"
-          icon={<HomeIcon fontSize="small" />}
-          label="Home"
-          onClose={handleClose}
-        />
-        <ChipNavigation  label="Products" href="#" />
-        <ChipNavigation
-          color="secondary"
-          label="Categories"
-          //Override the default delete icon element. Shown only if onDelete is set
-          deleteIcon={<ExpandMoreIcon />}
-          onClick={handleClick}
-          onDelete={handleClick}
-        />
-        <CategoriesMenuListPopover
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          open={Boolean(anchorEl)} />
-      </Breadcrumbs>
-    </div>
+            <Hidden smDown>
+
+    <Breadcrumbs className={classes.root} separator=">" aria-label="navigation">
+      <ChipNavigation
+        component="a"
+        href="#"
+        label="Home"
+        icon={<HomeIcon className={classes.iconChip} fontSize="small" />}
+      />
+      <ChipNavigation component="a" href="#" label="Products" />
+      <ChipNavigation
+        label="Categories"
+        component="a"
+        deleteIcon={<ExpandMoreIcon className={classes.iconChip} />}
+        onClick={handleMenuCategories}
+        onDelete={handleMenuCategories}
+      />
+      <CategoriesMenuListPopover
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      />
+    </Breadcrumbs>
+    </Hidden>
   );
 }
 

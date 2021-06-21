@@ -4,18 +4,18 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from "react-router-dom";
 
 // import elements
 import Spinner from './components/elements/spinner/Spinner';
 
 // import lazy components
-const NotFoundPage = lazy(() => import('./components/elements/NotFoundPage'));
+const HeaderLayout = lazy(() => import('./components/header/HeaderLayout'));
 const ProductsPage = lazy(() => import('./components/products/ProductsPage'));
 const ProductDetails = lazy(() => import('./components/products/ProductDetails'));
 const CartGrid = lazy(() => import('./components/cart/CartGrid'));
-const HeaderLayout = lazy(() => import('./components/header/HeaderLayout'));
-const HomePage = lazy(() => import('./components/homePage/HomePage'));
+const NotFoundPage = lazy(() => import('./components/elements/NotFoundPage'));
 
 const App = () => {
 
@@ -25,9 +25,8 @@ const App = () => {
         <Suspense fallback={<Spinner/>}>
           <HeaderLayout />
             <Switch>
-              <Route exact path="/" >
-                <HomePage />
-              </Route>
+              {/* for this project, the app starts directly on products category page */}
+              <Redirect exact path="/" to="/products/lipstick" />
               <Route  path='/products/:category'>
                 <ProductsPage />
               </Route>

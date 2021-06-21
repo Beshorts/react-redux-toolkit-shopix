@@ -1,13 +1,13 @@
 import React, {Suspense, lazy} from 'react';
 
 // import components
-import Header from './Header';
+//import Header from './Header';
 
 // import elements
 import { useDrawer } from '../elements/customHooks';
 
 // import lazy component
-//const Header = lazy(() => import('./Header'));
+const Header = lazy(() => import('./Header'));
 const DrawerCategories = lazy(() => import('../drawer/DrawerCategories'));
 
 // create component composition
@@ -17,11 +17,11 @@ const HeaderLayout = () => {
   const [mobileOpen, openDrawerCallback, closeDrawerCallback] = useDrawer();
 
   return(
-    <Header mobileOpen={mobileOpen} openDrawerCallback={openDrawerCallback} >
       <Suspense fallback={<div/>}>
+    <Header mobileOpen={mobileOpen} openDrawerCallback={openDrawerCallback} >
         <DrawerCategories mobileOpen={mobileOpen} closeDrawerCallback={closeDrawerCallback} />
-      </Suspense>
     </Header>
+      </Suspense>
   );
 };
 

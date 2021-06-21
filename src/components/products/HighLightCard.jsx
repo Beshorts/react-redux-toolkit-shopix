@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+// import Mui component
+import Skeleton from '@material-ui/lab/Skeleton';
+
 // import elements
 import { useAddRemoveFavorite } from '../elements/customHooks';
 
@@ -31,9 +34,8 @@ const useStyles = makeStyles((theme) => ({
    width: "100%",
   },
   media: {
-    margin: theme.spacing(0, 'auto'),
     width: 84,
-    backgroundSize: "cover",
+    margin: "auto",
   },
   cardHeader: {
    padding: theme.spacing(1.25, 2, 0, 2),
@@ -63,8 +65,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HighLightCard = ({ columnIndex, rowIndex, style, data }) => {
+
   const classes = useStyles();
-console.log("highlightCard")
 
   // destructure data
   const { value, columnCount } = data;
@@ -103,7 +105,7 @@ console.log("highlightCard")
       id={id}
       style={cellContainerStyle}
       >
-        <Suspense fallback={<p>loading...</p>}>
+        <Suspense fallback={<Skeleton variant="rect" height={180} width={180} />}>
           <Card elevation={3} className={classes.root} key={id} >
             <CardHeader
               className={classes.cardHeader}

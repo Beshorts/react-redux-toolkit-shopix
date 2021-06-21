@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-// import MUI components
-import Container from '@material-ui/core/Container';
+// import MUi components
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 //import svg file
 import sfondook from './sfondook.svg';
+
+// import Mui lazy components
+const Container = lazy(() => import('@material-ui/core/Container'));
+
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
    padding: theme.spacing(2),
-   backgroundColor: "#ffff",
+   backgroundColor: "#fff",
    [theme.breakpoints.up('sm')]: {
     padding: theme.spacing(0),
     backgroundColor: "transparent",
@@ -102,6 +105,7 @@ const HomePage = () => {
   const classes = useStyles();
 
   return(
+    <Suspense fallback={<div/>}>
     <Container maxWidth={false} className={classes.root} component="div" disableGutters >
       <div className={classes.logoContainer} >
         <Typography className={classes.logo} component="h1" variant="h6">
@@ -128,6 +132,7 @@ const HomePage = () => {
       </Button>
       </div>
     </Container>
+    </Suspense>
   )
 };
 

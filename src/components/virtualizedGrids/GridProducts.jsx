@@ -11,7 +11,6 @@ import GridsHeaders from '../elements/GridsHeaders';
 import { useOneRowGrid } from '../elements/customHooks';
 
 const GridProducts = ({children, width}) => {
-console.log("gridProducts")
 
   // state of products filtered by category
   const productsFiltered = useSelector(state => state.products.productsFiltered);

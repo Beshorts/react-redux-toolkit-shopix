@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 
 import PropTypes from 'prop-types';
 
-import { CardMedia } from '@material-ui/core';
+import CardMedia  from '@material-ui/core/CardMedia';
 
 // build lazy load img on enter screen to boost performance
 const LazyCardMedia = elem => {

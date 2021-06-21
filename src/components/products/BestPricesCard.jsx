@@ -6,6 +6,9 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+// import Mui component
+import Skeleton from '@material-ui/lab/Skeleton';
+
 // import MUI components as lazy load
 const Card = lazy(() => import('@material-ui/core/Card'));
 const CardActionArea = lazy(() => import('@material-ui/core/CardActionArea'));
@@ -25,10 +28,9 @@ const useStyles = makeStyles((theme) => ({
    width: "100%",
   },
   media: {
-   margin: theme.spacing(0, 'auto'),
    width: 98,
+   margin: "auto",
    padding: theme.spacing(1.25, 0, 1.25, 0),
-   backgroundSize: "cover",
    transition: "all .2s ease-in-out",
    "&:hover": {
     transform: "scale(1.08)",
@@ -51,8 +53,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BestPricesCard = ({ columnIndex, rowIndex, style, data }) => {
+
   const classes = useStyles();
-console.log("bestpricescard")
+
   // destructure data
   const { value, columnCount } = data;
 
@@ -80,7 +83,7 @@ console.log("bestpricescard")
           id={id}
           style={cellContainerStyle}
         >
-        <Suspense fallback={<p>loading...</p>}>
+        <Suspense fallback={<Skeleton variant="rect" height={120} width={130} />}>
           <Card elevation={3} className={classes.root} key={id} >
             <CardActionArea
               className={classes.cardActionArea}
