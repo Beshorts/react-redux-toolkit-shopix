@@ -14,18 +14,18 @@ import RemoveIcon from '@material-ui/icons/Remove';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
+   minWidth: 25,
    borderRadius: theme.spacing(1, 0, 1, 0),
    padding: theme.spacing(0.2),
-   minWidth: 25,
   },
   addBtn: {
    color: "#FFFF",
    fontSize: "1.1rem",
   },
   removeBtn: {
+   backgroundColor: theme.palette.darkPurple.main,
    color: "#FFFF",
    fontSize: "1.1rem",
-   backgroundColor: theme.palette.darkPurple.main,
   },
 }));
 

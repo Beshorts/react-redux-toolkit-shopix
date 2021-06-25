@@ -26,7 +26,7 @@ import LazyCardMedia from '../elements/LazyCardMedia';
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
-  rootCard: {
+  root: {
     display: 'flex',
     justifyContent: "space-between",
     marginBottom: theme.spacing(1.5),
@@ -37,14 +37,13 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
     },
   },
-  boxRoot: {
+  boxMedia: {
     display: "inline-flex",
   },
   media: {
-    marginLeft: theme.spacing(1),
-    margin: "auto",
     width: 62,
-    backgroundSize: "cover",
+    margin: "auto",
+    marginLeft: theme.spacing(1),
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(2),
     },
@@ -109,8 +108,8 @@ const CartCard = ({ product }) => {
       <Slide direction="up" in={true} timeout={500} mountOnEnter unmountOnExit >
         <Box>
           <Fade in={true} timeout={800}>
-            <Card className={classes.rootCard}>
-              <Box className={classes.boxRoot} >
+            <Card className={classes.root}>
+              <Box className={classes.boxMedia} >
                 <LazyCardMedia
                   className={classes.media}
                   image={image_link}

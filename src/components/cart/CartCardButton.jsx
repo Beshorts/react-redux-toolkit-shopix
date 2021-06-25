@@ -41,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0),
   },
   btnRoot: {
-    borderRadius: theme.spacing(1, 0, 1, 0),
     minWidth: 0,
-    padding: theme.spacing(0.25),
     backgroundColor: theme.palette.secondary.main,
+    borderRadius: theme.spacing(1, 0, 1, 0),
+    padding: theme.spacing(0.25),
     "&:hover": {
     backgroundColor: theme.palette.darkPurple.main,
     },

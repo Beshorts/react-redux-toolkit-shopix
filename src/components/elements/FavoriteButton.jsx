@@ -17,12 +17,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 16,
   },
    favoriteIcon: {
-    fontSize: "1.2rem",
     color: theme.palette.error.main,
+    fontSize: "1.2rem",
   },
   favoriteIconOutlined: {
-    fontSize: "1.2rem",
     color: theme.palette.error.main,
+    fontSize: "1.2rem",
   }
 }));
 const FavoriteButton = ({ isFavorited, onClick }) => {

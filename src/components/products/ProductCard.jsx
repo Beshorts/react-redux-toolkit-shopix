@@ -9,8 +9,11 @@ import { makeStyles } from '@material-ui/core/styles';
 // import Mui component
 import Skeleton from '@material-ui/lab/Skeleton';
 
+// import custom Skeleton style
+import {SkeletonWrapper} from './styles';
 // import elements
 import { useAddRemoveCartItem, useAddRemoveFavorite } from '../elements/customHooks';
+
 
 // import MUI components as lazy load
 const Card = lazy(() => import('@material-ui/core/Card'));
@@ -19,6 +22,7 @@ const CardActionArea = lazy(() => import('@material-ui/core/CardActionArea'));
 const CardActions = lazy(() => import('@material-ui/core/CardActions'));
 const CardContent = lazy(() => import('@material-ui/core/CardContent'));
 const Typography = lazy(() => import('@material-ui/core/Typography'));
+
 // import elements as lazy load
 const CartButton = lazy(() => import('../elements/CartButton'));
 const FavoriteButton = lazy(() => import('../elements/FavoriteButton'));
@@ -28,31 +32,24 @@ const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: 134,
-    margin: theme.spacing(0, 1.75, 0, 1.75),
-  },
-  cardHeader: {
-   padding: theme.spacing(1.25, 2, 0, 2),
-  },
-  cardActionArea: {
-   width: "100%",
-  },
-  media: {
-    margin: "auto",
-    width: 84,
-  },
-  cardContent: {
-    padding: theme.spacing(2, 4, 2, 4)
+    maxWidth: 182,
+    margin: theme.spacing(0, "auto"),
+    "& .MuiCardHeader-root": {
+     padding: theme.spacing(1.25, 2, 0, 2),
+    },
+    "& .MuiCardMedia-img": {
+     objectFit: "contain",
+    },
+    "& .MuiCardActions-root": {
+     justifyContent: "space-between",
+     padding: theme.spacing(0, 4, 2, 4),
+    },
   },
   nameProduct: {
    color: theme.palette.primary.main,
+   textAlign: "center",
    fontSize: "0.9rem",
    fontWeight: 400,
-
-  },
-  cardAction: {
-    justifyContent: "space-between",
-    padding: theme.spacing(0, 4, 0, 4),
   },
   priceProduct: {
    color: theme.palette.deepPrimary.main,
@@ -103,14 +100,20 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
     <div style={style} className="cellContainer">
       {productCard && (
       <div
-      className="cell"
-      id={id}
-      style={cellContainerStyle}
+        className="cell"
+        id={id}
+        style={cellContainerStyle}
       >
-        <Suspense fallback={<Skeleton variant="rect" height={225} width={180} />}>
+        <Suspense
+          fallback={
+            <SkeletonWrapper >
+              <Skeleton variant="rect" height={160} width={180} style={{ marginBottom: 2}} />
+              <Skeleton variant="text" width="70%" height={10} />
+              <Skeleton variant="text" width="30%" height={10} />
+            </SkeletonWrapper>
+          }>
           <Card elevation={3}  className={classes.root} key={id} >
             <CardHeader
-              className={classes.cardHeader}
               action={
                 <FavoriteButton
                   isFavorited={getCurrentFavoriteItem}
@@ -119,23 +122,20 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
               }
             />
             <CardActionArea
-              className={classes.cardActionArea}
               component={Link} to={`/product/${id}`}
             >
               <LazyCardMedia
-                className={classes.media}
                 alt="beautiful make-up product"
                 image={image_link}
                 height={80}
               />
             </CardActionArea>
-          </Card>
-              <CardContent className={classes.cardContent} >
+              <CardContent >
                 <Typography className={classes.nameProduct} noWrap variant="h6" component="h1" >
                   {name}
                 </Typography>
               </CardContent>
-            <CardActions className={classes.cardAction}  >
+            <CardActions >
               <Typography className={classes.priceProduct}  variant="h6" component="h2">
                  {price_sign}{price}
               </Typography>
@@ -144,6 +144,7 @@ const ProductCard = ({ columnIndex, rowIndex, style, data }) => {
                  onClick={handleCartButton}
               />
             </CardActions>
+          </Card>
         </Suspense>
      </div>
      )
