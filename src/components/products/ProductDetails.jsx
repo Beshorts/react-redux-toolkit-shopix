@@ -36,13 +36,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imageBg: {
-    display: "grid",
-    marginTop: theme.spacing(11.25),
     paddingTop: theme.spacing(3.75),
+    marginTop: theme.spacing(11.25),
   },
   imageProduct: {
-    margin: theme.spacing(0,'auto'),
     width: 162,
+    margin: theme.spacing(0,'auto'),
   },
   textAndIcon: {
     width: "100%",
@@ -60,13 +59,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
   },
   productType: {
-    fontWeight: 700,
     fontSize: "0.9rem",
+    fontWeight: 700,
     opacity: 0.7,
   },
   productDescription: {
-    fontWeight: 400,
     fontSize: "0.9rem",
+    fontWeight: 400,
     lineHeight: 1.6,
   },
   price: {
@@ -128,7 +127,7 @@ const ProductDetails = () => {
         <Typography gutterBottom className={classes.productType} variant="subtitle1" component="h4">
           {product_type}
         </Typography>
-        <Typography paragraph className={classes.productDescription} variant="body2" component="h5">
+        <Typography paragraph className={classes.productDescription} variant="body2" component="p">
           {description}
         </Typography>
         <Box className={classes.textAndIcon}>

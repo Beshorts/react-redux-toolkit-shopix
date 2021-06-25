@@ -1,11 +1,16 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+
+import styled from 'styled-components';
+
+import {Wrapper} from './styles';
+
+
+import PropTypes from 'prop-types';
 
 // redux Selector
 import { productsSuggested } from '../../selectors/products';
-
-import PropTypes from 'prop-types';
 
 import { FixedSizeGrid as Grid } from 'react-window';
 
@@ -20,16 +25,15 @@ const GridSuggestions = ({ children, width }) => {
   const highlighted = useSelector(productsSuggested);
 
   //passing height and state parameters
-  const { cellWidth, cellHeight, columnCount, rowCount, itemData } = useOneRowGrid(210, highlighted);
+  const { cellWidth, cellHeight, columnCount, rowCount, itemData } = useOneRowGrid(190, highlighted);
 
   const gridStyle = {
-   position: "sticky",
   };
 
+
   return(
-    <>
+    <WrapperPadding>
       <GridsHeaders
-        margin={2}
         data={highlighted}
         text="items"
         symbol={"👏"}
@@ -50,11 +54,16 @@ const GridSuggestions = ({ children, width }) => {
       >
         {children}
       </Grid>
-    </>
+    </WrapperPadding>
   )
 };
 
 export default GridSuggestions;
+
+// add padding on styled-component
+const WrapperPadding = styled(Wrapper)`
+  padding-bottom: 48px;
+`;
 
 GridSuggestions.propTypes = {
   children: PropTypes.object.isRequired,

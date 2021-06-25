@@ -2,17 +2,18 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-// redux memoized Selector
-import { productsBestPrices } from '../../selectors/products';
+import {Wrapper} from './styles';
 
 import PropTypes from 'prop-types';
+
+// redux memoized Selector
+import { productsBestPrices } from '../../selectors/products';
 
 import { FixedSizeGrid as Grid } from 'react-window';
 
 // import element
 import GridsHeaders from '../elements/GridsHeaders';
 import { useOneRowGrid } from '../elements/customHooks';
-
 
 const GridBestPrices = ({ children, width }) => {
 
@@ -26,9 +27,8 @@ const GridBestPrices = ({ children, width }) => {
   };
 
   return(
-    <>
+    <Wrapper>
       <GridsHeaders
-        margin={2}
         data={bestPrices}
         text="items"
         symbol={"🔥"}
@@ -48,7 +48,7 @@ const GridBestPrices = ({ children, width }) => {
       >
         {children}
       </Grid>
-    </>
+    </Wrapper>
   )
 };
 
