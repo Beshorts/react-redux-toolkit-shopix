@@ -30,7 +30,7 @@ const NotFoundPage = () => {
        404 PAGE NOT FOUND
       </Typography>
       <Typography variant="h6" component="h2" >
-        <Link to="/">Back to Home </Link>
+        <Link to="/products/lipstick">Back to Products </Link>
       </Typography>
     </Container>
   )
