@@ -14,34 +14,34 @@ import Emoji from '../elements/Emoji';
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: theme.spacing(1.2),
-    padding: theme.spacing(1, 0, 0, 2),
     width: 300,
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    padding: theme.spacing(1, 0, 0, 2),
+    marginBottom: theme.spacing(1.2),
   },
   gridHeaderText: {
-    marginRight: theme.spacing(0.75),
     color: theme.palette.primary.main,
-    fontSize: "0.9rem"
-,   fontWeight: 500,
+    fontSize: "0.9rem",
+    fontWeight: 500,
+    marginRight: theme.spacing(0.75),
   },
     gridHeaderSubtitle: {
-    margin: theme.spacing(0.375, 0, 0, 0.25),
     color: theme.palette.grey.main,
     fontSize: "0.75rem",
     fontWeight: 700,
+    margin: theme.spacing(0.375, 0, 0, 0.25),
   },
 }));
 
 
-const GridsHeaders = ({data, title,text, symbol, label, margin}) => {
+const GridsHeaders = ({data, title,text, symbol, label}) => {
 
   const classes = useStyles();
 
   return(
-    <Box className={classes.root} mt={margin} >
+    <Box className={classes.root} >
       <Typography className={classes.gridHeaderText} variant="subtitle1" component="h1">
         {title}
       </Typography>
@@ -63,5 +63,4 @@ GridsHeaders.propTypes = {
   title: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  margin: PropTypes.number,
 }

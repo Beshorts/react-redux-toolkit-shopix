@@ -1,5 +1,7 @@
 import React, {Suspense, lazy} from 'react';
 
+import styled from 'styled-components';
+
 import PropTypes from 'prop-types';
 
 import AutoSizer from 'react-virtualized-auto-sizer';
@@ -29,16 +31,11 @@ const AutoSizerGrids = () => {
   const isLargeScreen = useMediaQuery(theme => theme.breakpoints.up("md"));
 
   const autoSizerStyle = {
-    display: 'flex',
     minHeight: "100vh",
     position: "sticky",
-    margin: "auto",
     top: "0px",
-  };
-
-  const containerBoxStyle = {
-    width: "100%" ,
-    marginTop: isLargeScreen ? "40px" : "110px",
+    margin: "auto",
+    display: 'flex',
   };
 
   return(
@@ -48,24 +45,24 @@ const AutoSizerGrids = () => {
         return(
           <>
             <div className="anchor" id="back-to-top-anchor" />
-            <Suspense fallback={<div/>}>
-            <div className="containerBox" style={containerBoxStyle}>
-              <GridProducts width={width} >
-                {ProductCard}
-              </GridProducts>
-              <GridBestPrices width={width} >
-                {BestPricesCard}
-              </GridBestPrices>
-              <GridSuggestions width={width}>
-                {HighLightCard}
-              </GridSuggestions>
-              </div>
-            </Suspense>
-            <ScrollToTopOnPage >
-              <Fab color="primary" size="small" aria-label="scroll back to top">
-                <KeyboardArrowUpIcon />
-              </Fab>
-            </ScrollToTopOnPage>
+              <Suspense fallback={<div/>}>
+                <Wrapper isLargeScreen={isLargeScreen} >
+                  <GridProducts width={width} >
+                    {ProductCard}
+                  </GridProducts>
+                  <GridBestPrices width={width} >
+                    {BestPricesCard}
+                  </GridBestPrices>
+                  <GridSuggestions width={width}>
+                    {HighLightCard}
+                  </GridSuggestions>
+                </Wrapper>
+              </Suspense>
+              <ScrollToTopOnPage >
+                <Fab color="primary" size="small" aria-label="scroll back to top">
+                  <KeyboardArrowUpIcon />
+                </Fab>
+              </ScrollToTopOnPage>
           </>
         )
        }}
@@ -75,6 +72,12 @@ const AutoSizerGrids = () => {
 };
 
 export default AutoSizerGrids;
+
+// styled-component
+const Wrapper = styled.section`
+  width: 100%;
+  margin-top: ${props => props.isLargeScreen ? "40px" : "110px"};
+`;
 
 AutoSizerGrids.propTypes = {
   width: PropTypes.number,

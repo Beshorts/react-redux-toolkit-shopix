@@ -29,8 +29,8 @@ const HeaderSwitchNavigation = lazy(() => import('./HeaderSwitchNavigation'));
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    zIndex:  theme.zIndex.drawer + 1,
     color: theme.palette.primary.main,
+    zIndex:  theme.zIndex.drawer + 1,
   },
   toolbarHeader: {
     minHeight: 80,
@@ -40,18 +40,18 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    fontWeight: 500,
     fontSize: "1rem",
+    fontWeight: 500,
    },
   cart: {
-    fontSize: "1.4rem",
     color: theme.palette.primary.main,
+    fontSize: "1.4rem",
   },
   badge: {
+    backgroundColor: theme.palette.secondary.main,
+    color: "#fff",
     fontSize: "0.8rem",
     fontWeight: 700,
-    color: "#fff",
-    backgroundColor: theme.palette.secondary.main,
   }
 }));
 

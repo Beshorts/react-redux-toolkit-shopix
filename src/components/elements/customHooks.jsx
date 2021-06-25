@@ -124,13 +124,13 @@ return {
 };
 
 
-// create one Row Grid Fixed width with variable heights and parameters
+// create one Row Grid Fixed width filled by data with variable heights
 export const  useOneRowGrid = (height,value) => {
 
   // initialize state
   let cellWidth = 0;
   // manage width based on height parameters
-  height >= 190 ? cellWidth = 210 : cellWidth = 160;
+  height >= 200 ? cellWidth = 210 : cellWidth = 180;
   // fixed cell height
   const cellHeight = height;
   // fixed row

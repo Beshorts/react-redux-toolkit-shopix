@@ -10,8 +10,8 @@ import Chip from '@material-ui/core/Chip';
 // breadCrumb custom style as chip
 const StyledBreadcrumb = withStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.greenChip.main,
     height: theme.spacing(3.625),
+    backgroundColor: theme.palette.greenChip.main,
     color: "white",
     fontWeight: 500,
     cursor: "pointer",

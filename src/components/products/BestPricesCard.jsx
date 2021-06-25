@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 import PropTypes from 'prop-types';
 
+// import custom Skeleton style
+import {SkeletonWrapper} from './styles';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 // import Mui component
@@ -20,35 +23,17 @@ const LazyCardMedia = lazy(() => import('../elements/LazyCardMedia'));
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(0, 1.75, 0, 1.75),
-    color: theme.palette.primary.main,
-    borderRadius: 0,
-  },
-  cardActionArea: {
-   width: "100%",
-  },
-  media: {
-   width: 98,
-   margin: "auto",
-   padding: theme.spacing(1.25, 0, 1.25, 0),
-   transition: "all .2s ease-in-out",
-   "&:hover": {
-    transform: "scale(1.08)",
+   maxWidth: 150,
+   color: theme.palette.primary.main,
+   margin: theme.spacing(0, "auto"),
+   "& .MuiCardMedia-img": {
+    objectFit: "contain",
+    padding: theme.spacing(1.25, 0, 1.25, 0),
+    transition: "all .2s ease-in-out",
+    "&:hover": {
+     transform: "scale(1.08)",
+    },
    },
-  },
-  bestPricesCardContent: {
-   textAlign: "center",
-   paddingBottom: theme.spacing(0),
-  },
-  nameProduct: {
-   opacity: 0.8,
-   fontSize: "0.9rem",
-   fontWeight: 400,
-  },
-  priceProduct: {
-   marginTop: theme.spacing(1.25),
-   fontSize: "0.9rem",
-   fontWeight: 700,
   },
 }));
 
@@ -83,14 +68,16 @@ const BestPricesCard = ({ columnIndex, rowIndex, style, data }) => {
           id={id}
           style={cellContainerStyle}
         >
-        <Suspense fallback={<Skeleton variant="rect" height={120} width={130} />}>
+        <Suspense fallback={
+          <SkeletonWrapper>
+            <Skeleton variant="rect" height={120} width={130} />
+          </SkeletonWrapper>
+        }>
           <Card elevation={3} className={classes.root} key={id} >
             <CardActionArea
-              className={classes.cardActionArea}
               component={Link} to={`/product/${id}`}
             >
             <LazyCardMedia
-              className={classes.media}
               alt="beautiful make-up product"
               image={image_link}
               height={120}

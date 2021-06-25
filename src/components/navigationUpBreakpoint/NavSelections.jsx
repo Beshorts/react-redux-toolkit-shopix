@@ -15,8 +15,8 @@ import ChipNavigation from './ChipNavigation';
 // style component
 const useStyles = makeStyles((theme) => ({
   root: {
-   marginTop: theme.spacing(15),
    paddingLeft: theme.spacing(2),
+   marginTop: theme.spacing(15),
   },
   iconChip: {
    color: "white",
