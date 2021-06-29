@@ -2,6 +2,7 @@
   "name": "react-redux-toolkit-shopix",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.js",
   "config-overrides-path": "node_modules/react-app-rewired/config-overrides.js",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
