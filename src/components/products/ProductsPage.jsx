@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 
 import { useParams } from "react-router-dom";
 
@@ -26,7 +26,7 @@ import Error from '../elements/errors/Error';
 import SkeletonCardGrid from '../elements/SkeletonCardGrid';
 
 // import component as lazy
-import NavSelections  from '../navigationUpBreakpoint/NavSelections';
+const NavSelections = lazy(() => import('../navigationUpBreakpoint/NavSelections'));
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
@@ -78,7 +78,9 @@ const ProductsPage = () => {
 
   return(
     <Container className={classes.autoSizerContainer} >
-      <NavSelections />
+      <Suspense fallback={<div/>}>
+       <NavSelections />
+      </Suspense>
       { isProductsLoaded
         ? <AutoSizerGrids />
         : error

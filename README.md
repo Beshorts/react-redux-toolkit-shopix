@@ -1,70 +1,74 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### React + RTK + Material-UI - Make Up products -
 
-## Available Scripts
+- This app is built with **create-react-app** to consume makeup-api.herokuapp.com/api/v1/products.json API request with **Axios**.
 
-In the project directory, you can run:
+- Using **Redux Toolkit** to manage Redux logic, and **createEntityAdapter** to generate a set of prebuilt reducers and selectors for performing CRUD operations on a normalized state structure. 
 
-### `yarn start`
+- **Apply single responsability principle** by creating **custom selectors** and **custom hooks** to keep  immutable Data structure and logic outside components  and let dumb components to be focused on UI.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Performance optimization techniques** applied with **code splitting** and **lazy loading** of components to reduce the main bundle. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **React.memo** and **React.useCallback** for component memoization to prevent useless re-rendering and cache expensive operations.
 
-### `yarn test`
+- **React-Window** and **React-Virtualized AutoSizer** to create products  grids to efficiently render only the data that's needed in addition to **custom lazy image IntersectionObserver**.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Prefetch** and **Preconnet** implemented methods in the HEAD to perform DNS lockups ahead of time.
 
-### `yarn build`
+- **Full responsive app mobile-first approach** styled with **MATERIAL UI** and **customized theme**. Adding dependencies **customize-cra** and **react-app-rewired** to override few webpack config for Material-ui better performance.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Using **PropTypes** for structured  and defined props to avoid bugs and errors.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Monitoring and debugging with **React Devtools , coverage, Profiler, Performance**  and **Lighthouse** extension.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Usage
 
-### `yarn eject`
+Responsive Web app that allows users to navigate through products categories, see details product, add and remove products from Shopping Cart, increment or decrement product quantity in cart updating the single amount and see the total of the purchase.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Live Application URL
+Deployed on Heroku :hearts:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[https://react-redux-toolkit-shopix.herokuapp.com/](
+https://react-redux-toolkit-shopix.herokuapp.com/)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technologies used
+See package.json for versions
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* **React v17.0.2**
+      - react-dom
+      - react-router-dom
+      - axios
+      - prop-types
+      - styled-components
+      
+* **React-Redux v7.2.4**
+      - reduxjs/toolkit v1.5.1
+      - redux-persist v6.0.0
 
-## Learn More
+* **Material-ui v4.11.4**
+      - material-ui/core
+      - material-ui/icons
+      - material-ui/lab
+      
+* **React-window v1.8.6**
+ 
+* **React-virtualized.auto-sizer v1.0.5**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* **Engines**
+      - Node v14.17.1
+      - npm v6.14.13
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## **Installation**
 
-### Code Splitting
+- ``git clone https://github.com/Beshorts/react-redux-toolkit-shopix.git`` 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## **Run**
 
-### Analyzing the Bundle Size
+- ``npm install`` then ``npm start`` to start React
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- visit [https://localhost:3000](https://localhost:3000) in your browser to see the app
 
-### Making a Progressive Web App
+- **Have fun!** :tada:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

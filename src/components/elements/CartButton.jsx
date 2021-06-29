@@ -54,7 +54,7 @@ const buttonStyle = {
   )
 };
 
-export default CartButton;
+export default React.memo(CartButton);
 
 CartButton.propTypes = {
   added: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
