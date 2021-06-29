@@ -54,11 +54,7 @@ const buttonStyle = {
   )
 };
 
-<<<<<<< HEAD
 export default React.memo(CartButton);
-=======
-export default CartButton;
->>>>>>> 8ba347b9add5f81f3be4519ab6ad19109fd8b9e0
 
 CartButton.propTypes = {
   added: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
