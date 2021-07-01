@@ -2,8 +2,8 @@
   "name": "react-redux-toolkit-shopix",
   "version": "0.1.0",
   "private": true,
-    "engines": {
-    "node": "14.x"
+  "engines": {
+   "node": "14.x"
   },
   "config-overrides-path": "node_modules/react-app-rewired/config-overrides.js",
   "dependencies": {
@@ -17,6 +17,9 @@
     "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.3",
     "customize-cra": "^1.0.0",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
+    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
@@ -31,7 +34,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "node server.js" ,
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

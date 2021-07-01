@@ -32,13 +32,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     zIndex:  theme.zIndex.drawer + 1,
   },
-  toolbarHeader: {
-    minHeight: 80,
-  },
   switchBtnBox: {
     width: 66,
   },
   title: {
+    color: theme.palette.primary.main,
     flexGrow: 1,
     fontSize: "1rem",
     fontWeight: 500,
