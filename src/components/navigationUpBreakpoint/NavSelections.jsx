@@ -1,6 +1,5 @@
 import React, {useState, Suspense, lazy} from 'react';
 
-
 import { makeStyles } from '@material-ui/core/styles';
 
 // import MUI components

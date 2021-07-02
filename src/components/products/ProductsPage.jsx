@@ -1,6 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 
-
 import { useParams } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux'
@@ -28,7 +27,6 @@ import SkeletonCardGrid from '../elements/SkeletonCardGrid';
 
 // import component as lazy
 const NavSelections = lazy(() => import('../navigationUpBreakpoint/NavSelections'));
-
 
 // rules for custom components style
 const useStyles = makeStyles((theme) => ({
