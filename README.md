@@ -1,29 +1,32 @@
 
 ### React + RTK + Material-UI - Make Up products -
 
-- This app is built with **create-react-app** to consume makeup-api.herokuapp.com/api/v1/products.json API request with **Axios**.
+* This app is built with **create-react-app** to consume makeup-api.herokuapp.com/api/v1/products.json API request with **Axios**.
 
-- Using **Redux Toolkit** to manage Redux logic, and **createEntityAdapter** to generate a set of prebuilt reducers and selectors for performing CRUD operations on a normalized state structure. 
+* Using **Redux Toolkit** to manage Redux logic, and **createEntityAdapter** to generate a set of prebuilt reducers and selectors for performing CRUD operations on a normalized state structure. 
 
-- **Apply single responsability principle** by creating **custom selectors** and **custom hooks** to keep  immutable Data structure and logic outside components  and let dumb components to be focused on UI.
+* **Apply single responsability principle** by creating **custom selectors** and **custom hooks** to keep  immutable Data structure and logic outside components  and let dumb components to be focused on UI.
 
-- **Performance optimization techniques** applied with **code splitting** and **lazy loading** of components to reduce the main bundle. 
+* **Performance optimization techniques** 
+    - **code splitting** and **lazy loading** of components to reduce the main bundle. 
 
-- **React.memo** and **React.useCallback** for component memoization to prevent useless re-rendering and cache expensive operations.
+    - **React.memo** and **React.useCallback** for component memoization to prevent useless re-rendering and cache expensive operations.
 
-- **React-Window** and **React-Virtualized AutoSizer** to create products  grids to efficiently render only the data that's needed in addition to **custom lazy image IntersectionObserver**.
+    - **React-Window** and **React-Virtualized AutoSizer** to create products  grids to efficiently render only the data that's needed in addition to **custom lazy image IntersectionObserver**.
 
-- **Prefetch** and **Preconnet** implemented methods in the HEAD to perform DNS lockups ahead of time.
+    - **Prefetch** and **Preconnet** implemented methods in the HEAD to perform DNS lockups ahead of time.
 
-- **Full responsive app mobile-first approach** styled with **MATERIAL UI** and **customized theme**. Adding dependencies **customize-cra** and **react-app-rewired** to override few webpack config for Material-ui better performance.
+* **Full responsive app mobile-first approach** styled with **MATERIAL UI** and **customized theme**. Adding dependencies **customize-cra** and **react-app-rewired** to override few webpack config for Material-ui better performance.
 
-- Using **PropTypes** for structured  and defined props to avoid bugs and errors.
+*  Using **PropTypes** for structured  and defined props to avoid bugs and errors.
 
-- Monitoring and debugging with **React Devtools , coverage, Profiler, Performance**  and **Lighthouse** extension.
+* **Express JS server** to serve production build.
+
+*  Monitoring and debugging with **React Devtools , coverage, Profiler, Performance**  and **Lighthouse** extension.
 
 ### Usage
 
-Responsive Web app that allows users to navigate through products categories, see details product, add and remove products from Shopping Cart, increment or decrement product quantity in cart updating the single amount and see the total of the purchase.
+Responsive Web app that allows users to navigate through products categories, see details, add and remove products from Shopping Cart, increment or decrement product quantity in cart updating the single amount and see the total of the purchase.
 
 ## Live Application URL
 Deployed on Heroku :hearts:
@@ -66,7 +69,7 @@ See package.json for versions
 
 - ``npm install`` then ``npm start`` to start React
 
-- visit [https://localhost:3000](https://localhost:3000) in your browser to see the app
+- visit [https://localhost:8080](https://localhost:8080) in your browser to see the app
 
 - **Have fun!** :tada:
 

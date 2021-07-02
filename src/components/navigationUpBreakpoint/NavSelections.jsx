@@ -16,7 +16,6 @@ const ExpandMoreIcon = lazy(() => import('@material-ui/icons/ExpandMore'));
 const CategoriesMenuListPopover = lazy(() => import('./CategoriesMenuListPopover'));
 const ChipNavigation = lazy(() => import('./ChipNavigation'));
 
-
 // style component
 const useStyles = makeStyles((theme) => ({
   root: {

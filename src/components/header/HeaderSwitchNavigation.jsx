@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
    width: 56,
   },
   menuIcon: {
-   color: "inherit",
+   color: theme.palette.primary.main,
   },
   btnGoBack: {
     color: "#fff",
