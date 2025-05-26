@@ -28,12 +28,6 @@
 
 Responsive Web app that allows users to navigate through products categories, see details, add and remove products from Shopping Cart, increment or decrement product quantity in cart updating the single amount and see the total of the purchase.
 
-## Live Application URL
-Deployed on Heroku :hearts:
-
-[https://react-redux-toolkit-shopix.herokuapp.com/](
-https://react-redux-toolkit-shopix.herokuapp.com/)
-
 ## Technologies used
 See package.json for versions
 
